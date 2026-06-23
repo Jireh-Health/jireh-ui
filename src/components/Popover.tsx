@@ -7,7 +7,10 @@ import {
   useCallback,
   createContext,
   useContext,
+  cloneElement,
+  isValidElement,
   type ReactNode,
+  type ReactElement,
   type HTMLAttributes,
   type CSSProperties,
 } from "react";
@@ -19,7 +22,7 @@ type Align = "start" | "center" | "end";
 interface PopoverContextValue {
   open: boolean;
   setOpen: (open: boolean) => void;
-  triggerRef: React.RefObject<HTMLButtonElement | null>;
+  triggerRef: React.RefObject<HTMLElement | null>;
 }
 
 const PopoverContext = createContext<PopoverContextValue | null>(null);
@@ -46,7 +49,7 @@ export function Popover({ children, open: controlledOpen, onOpenChange }: Popove
     },
     [onOpenChange],
   );
-  const triggerRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement>(null);
 
   return (
     <PopoverContext.Provider value={{ open, setOpen, triggerRef }}>
@@ -55,27 +58,21 @@ export function Popover({ children, open: controlledOpen, onOpenChange }: Popove
   );
 }
 
-export interface PopoverTriggerProps extends HTMLAttributes<HTMLButtonElement> {
-  asChild?: boolean;
+export interface PopoverTriggerProps {
+  children: ReactElement<{ onClick?: (...args: unknown[]) => void; ref?: React.Ref<HTMLElement> }>;
 }
 
-export function PopoverTrigger({ children, onClick, style, ...rest }: PopoverTriggerProps) {
+export function PopoverTrigger({ children }: PopoverTriggerProps) {
   const { open, setOpen, triggerRef } = usePopoverContext();
-  return (
-    <button
-      ref={triggerRef}
-      type="button"
-      aria-expanded={open}
-      onClick={(e) => {
-        setOpen(!open);
-        onClick?.(e);
-      }}
-      style={{ background: "none", border: "none", padding: 0, cursor: "pointer", ...style }}
-      {...rest}
-    >
-      {children}
-    </button>
-  );
+  if (!isValidElement(children)) return null;
+  return cloneElement(children, {
+    ref: triggerRef,
+    "aria-expanded": open,
+    onClick: (...args: unknown[]) => {
+      setOpen(!open);
+      (children.props as { onClick?: (...a: unknown[]) => void }).onClick?.(...args);
+    },
+  } as Record<string, unknown>);
 }
 
 export interface PopoverContentProps extends HTMLAttributes<HTMLDivElement> {

@@ -7,7 +7,10 @@ import {
   useCallback,
   createContext,
   useContext,
+  cloneElement,
+  isValidElement,
   type ReactNode,
+  type ReactElement,
   type HTMLAttributes,
   type ButtonHTMLAttributes,
 } from "react";
@@ -50,21 +53,19 @@ export function AlertDialog({ children, open: controlledOpen, onOpenChange }: Al
   );
 }
 
-export function AlertDialogTrigger({ children, onClick, style, ...rest }: ButtonHTMLAttributes<HTMLButtonElement>) {
+export interface AlertDialogTriggerProps {
+  children: ReactElement<{ onClick?: (...args: unknown[]) => void }>;
+}
+
+export function AlertDialogTrigger({ children }: AlertDialogTriggerProps) {
   const { setOpen } = useAlertDialogContext();
-  return (
-    <button
-      type="button"
-      onClick={(e) => {
-        setOpen(true);
-        onClick?.(e);
-      }}
-      style={{ background: "none", border: "none", padding: 0, cursor: "pointer", ...style }}
-      {...rest}
-    >
-      {children}
-    </button>
-  );
+  if (!isValidElement(children)) return null;
+  return cloneElement(children, {
+    onClick: (...args: unknown[]) => {
+      setOpen(true);
+      (children.props as { onClick?: (...a: unknown[]) => void }).onClick?.(...args);
+    },
+  });
 }
 
 export interface AlertDialogContentProps extends HTMLAttributes<HTMLDivElement> {
