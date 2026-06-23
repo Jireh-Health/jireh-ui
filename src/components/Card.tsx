@@ -13,9 +13,12 @@ export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
   action?: ReactNode;
 }
 
-export interface CardContentProps extends HTMLAttributes<HTMLDivElement> {}
+export interface CardContentProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode;
+}
 
 export interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode;
   align?: "start" | "end" | "between";
 }
 
