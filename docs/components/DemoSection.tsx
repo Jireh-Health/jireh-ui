@@ -2,6 +2,112 @@
 
 import { useState, type ReactNode } from "react";
 
+export interface PropDef {
+  name: string;
+  type: string;
+  default?: string;
+  required?: boolean;
+  description: string;
+}
+
+const cellStyle: React.CSSProperties = {
+  padding: "var(--space-2) var(--space-3)",
+  borderBottom: "1px solid var(--border-default)",
+  verticalAlign: "top",
+  textAlign: "left",
+};
+
+export function PropsTable({ props }: { props: PropDef[] }) {
+  return (
+    <div
+      style={{
+        marginTop: "var(--space-3)",
+        borderRadius: "var(--radius-md)",
+        border: "1px solid var(--border-default)",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          padding: "var(--space-2) var(--space-3)",
+          background: "var(--bg-surface-muted)",
+          borderBottom: "1px solid var(--border-default)",
+          fontFamily: "var(--font-mono)",
+          fontSize: "var(--text-xs)",
+          fontWeight: 500,
+          color: "var(--fg-muted)",
+        }}
+      >
+        Props
+      </div>
+      <div style={{ overflowX: "auto" }}>
+        <table
+          style={{
+            width: "100%",
+            borderCollapse: "collapse",
+            fontFamily: "var(--font-sans)",
+            fontSize: "var(--text-xs)",
+          }}
+        >
+          <thead>
+            <tr style={{ background: "var(--bg-surface)" }}>
+              <th style={{ ...cellStyle, fontWeight: 600, color: "var(--fg-heading)", width: "20%" }}>Prop</th>
+              <th style={{ ...cellStyle, fontWeight: 600, color: "var(--fg-heading)", width: "30%" }}>Type</th>
+              <th style={{ ...cellStyle, fontWeight: 600, color: "var(--fg-heading)", width: "12%" }}>Default</th>
+              <th style={{ ...cellStyle, fontWeight: 600, color: "var(--fg-heading)", width: "38%" }}>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {props.map((p) => (
+              <tr key={p.name} style={{ background: "var(--bg-surface)" }}>
+                <td style={cellStyle}>
+                  <code
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "var(--text-xs)",
+                      color: "var(--color-jireh-purple)",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {p.name}
+                    {p.required && <span style={{ color: "var(--color-error)" }}>*</span>}
+                  </code>
+                </td>
+                <td style={cellStyle}>
+                  <code
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "var(--text-xs)",
+                      background: "var(--bg-surface-muted)",
+                      padding: "1px 4px",
+                      borderRadius: "var(--radius-sm)",
+                      color: "var(--fg-default)",
+                    }}
+                  >
+                    {p.type}
+                  </code>
+                </td>
+                <td style={{ ...cellStyle, color: "var(--fg-muted)" }}>
+                  {p.default ? (
+                    <code style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-xs)" }}>
+                      {p.default}
+                    </code>
+                  ) : (
+                    "—"
+                  )}
+                </td>
+                <td style={{ ...cellStyle, color: "var(--fg-muted)", lineHeight: 1.4 }}>
+                  {p.description}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
 export function CodeBlock({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
 
@@ -81,14 +187,17 @@ export function DemoSection({
   id,
   title,
   usage,
+  props,
   children,
 }: {
   id?: string;
   title: string;
   usage?: string;
+  props?: PropDef[];
   children: ReactNode;
 }) {
   const [showCode, setShowCode] = useState(false);
+  const [showProps, setShowProps] = useState(false);
 
   return (
     <div id={id} style={{ marginBottom: "2.5rem", scrollMarginTop: "2rem" }}>
@@ -105,24 +214,44 @@ export function DemoSection({
         >
           {title}
         </h3>
-        {usage && (
-          <button
-            type="button"
-            onClick={() => setShowCode(!showCode)}
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "var(--text-xs)",
-              color: "var(--fg-muted)",
-              background: "none",
-              border: "1px solid var(--border-default)",
-              borderRadius: "var(--radius-sm)",
-              padding: "2px 8px",
-              cursor: "pointer",
-            }}
-          >
-            {showCode ? "Hide code" : "Show code"}
-          </button>
-        )}
+        <div style={{ display: "flex", gap: "var(--space-2)" }}>
+          {props && props.length > 0 && (
+            <button
+              type="button"
+              onClick={() => setShowProps(!showProps)}
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "var(--text-xs)",
+                color: showProps ? "var(--color-jireh-purple)" : "var(--fg-muted)",
+                background: "none",
+                border: "1px solid var(--border-default)",
+                borderRadius: "var(--radius-sm)",
+                padding: "2px 8px",
+                cursor: "pointer",
+              }}
+            >
+              Props
+            </button>
+          )}
+          {usage && (
+            <button
+              type="button"
+              onClick={() => setShowCode(!showCode)}
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "var(--text-xs)",
+                color: showCode ? "var(--color-jireh-purple)" : "var(--fg-muted)",
+                background: "none",
+                border: "1px solid var(--border-default)",
+                borderRadius: "var(--radius-sm)",
+                padding: "2px 8px",
+                cursor: "pointer",
+              }}
+            >
+              Code
+            </button>
+          )}
+        </div>
       </div>
       <div
         style={{
@@ -134,6 +263,7 @@ export function DemoSection({
       >
         {children}
       </div>
+      {props && showProps && <PropsTable props={props} />}
       {usage && showCode && <CodeBlock code={usage} />}
     </div>
   );

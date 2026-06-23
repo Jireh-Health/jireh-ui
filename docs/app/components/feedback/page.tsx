@@ -26,11 +26,79 @@ import {
   AlertDialogCancel,
   AlertDialogAction,
 } from "@jireh-health/ui/components/AlertDialog";
-import { DemoSection, PageHeader } from "@/components/DemoSection";
+import { DemoSection, PageHeader, type PropDef } from "@/components/DemoSection";
 
 export default function FeedbackPage() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const alertProps: PropDef[] = [
+    { name: "variant", type: '"info" | "success" | "warning" | "error"', default: '"info"', description: "Visual style indicating the alert severity." },
+    { name: "title", type: "string", description: "Optional bold heading displayed above the alert body." },
+    { name: "dismissible", type: "boolean", default: "false", description: "When true, renders a close button that removes the alert." },
+    { name: "children", type: "ReactNode", required: true, description: "The alert body content." },
+  ];
+
+  const toastProps: PropDef[] = [
+    { name: "message", type: "string", required: true, description: "The text displayed inside the toast." },
+    { name: "variant", type: '"info" | "success" | "warning" | "error"', default: '"info"', description: "Visual style indicating the toast severity." },
+    { name: "action", type: "{ label: string; onClick: () => void }", description: "Optional action button rendered inside the toast." },
+    { name: "duration", type: "number", default: "4000", description: "Auto-dismiss delay in milliseconds. Set to 0 for persistent toasts." },
+    { name: "onDismiss", type: "() => void", description: "Callback fired when the toast is dismissed. Also renders a close button when provided." },
+  ];
+
+  const dialogProps: PropDef[] = [
+    { name: "open", type: "boolean", required: true, description: "Controls whether the dialog is visible." },
+    { name: "onClose", type: "() => void", required: true, description: "Callback fired when the dialog should close (overlay click, Escape key, or close button)." },
+    { name: "title", type: "string", description: "Heading displayed at the top of the dialog." },
+    { name: "description", type: "string", description: "Secondary text displayed below the title." },
+    { name: "actions", type: "ReactNode", description: "Footer content, typically action buttons." },
+    { name: "children", type: "ReactNode", description: "Custom body content rendered between the description and actions." },
+  ];
+
+  const drawerProps: PropDef[] = [
+    { name: "open", type: "boolean", required: true, description: "Controls whether the drawer is visible." },
+    { name: "onClose", type: "() => void", required: true, description: "Callback fired when the drawer should close (overlay click, Escape key, or close button)." },
+    { name: "title", type: "string", description: "Heading displayed at the top of the drawer panel." },
+    { name: "children", type: "ReactNode", description: "Scrollable content rendered inside the drawer." },
+  ];
+
+  const loaderProps: PropDef[] = [
+    { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Controls the spinner diameter (16px, 24px, or 32px)." },
+    { name: "label", type: "string", description: "Accessible text displayed below the spinner. Falls back to \"Loading\" for screen readers." },
+  ];
+
+  const progressBarProps: PropDef[] = [
+    { name: "value", type: "number", default: "0", description: "Current progress as a percentage (0-100). Clamped automatically." },
+    { name: "label", type: "string", description: "Text displayed above the bar with the percentage." },
+    { name: "variant", type: '"default" | "success" | "error"', default: '"default"', description: "Color scheme for the filled portion of the bar." },
+    { name: "indeterminate", type: "boolean", default: "false", description: "When true, shows an animated looping bar instead of a fixed value." },
+    { name: "size", type: '"sm" | "md"', default: '"md"', description: "Track height (4px or 8px)." },
+  ];
+
+  const skeletonProps: PropDef[] = [
+    { name: "variant", type: '"text" | "circular" | "rectangular"', default: '"text"', description: "Shape of the skeleton placeholder." },
+    { name: "width", type: "string | number", description: "Width of the skeleton. Defaults depend on variant." },
+    { name: "height", type: "string | number", description: "Height of the skeleton. Defaults depend on variant." },
+    { name: "lines", type: "number", default: "3", description: 'Number of text lines to render. Only applies when variant is "text".' },
+  ];
+
+  const emptyStateProps: PropDef[] = [
+    { name: "title", type: "string", required: true, description: "Primary heading for the empty state." },
+    { name: "description", type: "string", description: "Secondary explanatory text below the title." },
+    { name: "action", type: "ReactNode", description: "Call-to-action element, typically a Button." },
+    { name: "icon", type: "ReactNode", description: "Optional icon or illustration displayed above the title." },
+  ];
+
+  const alertDialogProps: PropDef[] = [
+    { name: "AlertDialog: children", type: "ReactNode", required: true, description: "Compound component children (Trigger, Content, etc.)." },
+    { name: "AlertDialog: open", type: "boolean", description: "Controlled open state. When omitted, the component manages its own state." },
+    { name: "AlertDialog: onOpenChange", type: "(open: boolean) => void", description: "Callback fired when the open state changes." },
+    { name: "AlertDialogTrigger: children", type: "ReactElement", required: true, description: "The element that opens the dialog when clicked. Receives an onClick handler via cloneElement." },
+    { name: "AlertDialogContent: children", type: "ReactNode", required: true, description: "Content rendered inside the alert dialog panel." },
+    { name: "AlertDialogCancel: children", type: "ReactNode", default: '"Cancel"', description: "Label for the cancel button." },
+    { name: "AlertDialogAction: children", type: "ReactNode", default: '"Confirm"', description: "Label for the confirm/destructive action button." },
+  ];
 
   return (
     <div style={{ maxWidth: "64rem" }}>
@@ -40,7 +108,7 @@ export default function FeedbackPage() {
         count={9}
       />
 
-      <DemoSection id="alert" title="Alert" usage={`import { Alert } from "@jireh-health/ui/components/Alert";
+      <DemoSection id="alert" title="Alert" props={alertProps} usage={`import { Alert } from "@jireh-health/ui/components/Alert";
 
 <Alert variant="success" title="Payment successful" dismissible>
   Payment of KES 3,200 to Nairobi Hospital was successful.
@@ -61,7 +129,7 @@ export default function FeedbackPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="toast" title="Toast" usage={`import { Toast } from "@jireh-health/ui/components/Toast";
+      <DemoSection id="toast" title="Toast" props={toastProps} usage={`import { Toast } from "@jireh-health/ui/components/Toast";
 
 <Toast
   message="Receipt saved to your account"
@@ -79,7 +147,7 @@ export default function FeedbackPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="dialog" title="Dialog" usage={`import { Dialog } from "@jireh-health/ui/components/Dialog";
+      <DemoSection id="dialog" title="Dialog" props={dialogProps} usage={`import { Dialog } from "@jireh-health/ui/components/Dialog";
 
 const [open, setOpen] = useState(false);
 
@@ -123,7 +191,7 @@ const [open, setOpen] = useState(false);
         </Dialog>
       </DemoSection>
 
-      <DemoSection id="drawer" title="Drawer" usage={`import { Drawer } from "@jireh-health/ui/components/Drawer";
+      <DemoSection id="drawer" title="Drawer" props={drawerProps} usage={`import { Drawer } from "@jireh-health/ui/components/Drawer";
 
 const [open, setOpen] = useState(false);
 
@@ -152,7 +220,7 @@ const [open, setOpen] = useState(false);
         </Drawer>
       </DemoSection>
 
-      <DemoSection id="loader" title="Loader" usage={`import { Loader } from "@jireh-health/ui/components/Loader";
+      <DemoSection id="loader" title="Loader" props={loaderProps} usage={`import { Loader } from "@jireh-health/ui/components/Loader";
 
 <Loader size="md" label="Processing payment..." />`}>
         <Inline gap="6">
@@ -162,7 +230,7 @@ const [open, setOpen] = useState(false);
         </Inline>
       </DemoSection>
 
-      <DemoSection id="progress-bar" title="ProgressBar" usage={`import { ProgressBar } from "@jireh-health/ui/components/ProgressBar";
+      <DemoSection id="progress-bar" title="ProgressBar" props={progressBarProps} usage={`import { ProgressBar } from "@jireh-health/ui/components/ProgressBar";
 
 <ProgressBar
   value={68}
@@ -176,7 +244,7 @@ const [open, setOpen] = useState(false);
         </Stack>
       </DemoSection>
 
-      <DemoSection id="skeleton" title="Skeleton" usage={`import { Skeleton } from "@jireh-health/ui/components/Skeleton";
+      <DemoSection id="skeleton" title="Skeleton" props={skeletonProps} usage={`import { Skeleton } from "@jireh-health/ui/components/Skeleton";
 
 <Skeleton variant="text" lines={3} />
 <Skeleton variant="circular" />
@@ -201,7 +269,7 @@ const [open, setOpen] = useState(false);
         </Stack>
       </DemoSection>
 
-      <DemoSection id="empty-state" title="EmptyState" usage={`import { EmptyState } from "@jireh-health/ui/components/EmptyState";
+      <DemoSection id="empty-state" title="EmptyState" props={emptyStateProps} usage={`import { EmptyState } from "@jireh-health/ui/components/EmptyState";
 
 <EmptyState
   title="No transactions yet"
@@ -215,7 +283,7 @@ const [open, setOpen] = useState(false);
         />
       </DemoSection>
 
-      <DemoSection id="alert-dialog" title="AlertDialog" usage={`import {
+      <DemoSection id="alert-dialog" title="AlertDialog" props={alertDialogProps} usage={`import {
   AlertDialog,
   AlertDialogTrigger,
   AlertDialogContent,

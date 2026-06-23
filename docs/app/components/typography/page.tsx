@@ -5,9 +5,27 @@ import { Inline } from "@jireh-health/ui/components/Inline";
 import { Heading } from "@jireh-health/ui/components/Heading";
 import { Text } from "@jireh-health/ui/components/Text";
 import { DisplayText } from "@jireh-health/ui/components/DisplayText";
-import { DemoSection, PageHeader } from "@/components/DemoSection";
+import { DemoSection, PageHeader, type PropDef } from "@/components/DemoSection";
 
 export default function TypographyPage() {
+  const headingProps: PropDef[] = [
+    { name: "level", type: "1 | 2 | 3 | 4", default: "2", description: "Heading level — controls font size and renders the corresponding h1-h4 element by default" },
+    { name: "as", type: "ElementType", description: "Override the rendered HTML element" },
+    { name: "children", type: "ReactNode", description: "Content to display inside the heading" },
+  ];
+
+  const textProps: PropDef[] = [
+    { name: "variant", type: '"body-lg" | "body" | "body-sm" | "ui" | "mono"', default: '"body"', description: "Typographic style preset" },
+    { name: "color", type: '"default" | "muted" | "subtle" | "error" | "success"', default: '"default"', description: "Text colour" },
+    { name: "as", type: "ElementType", default: '"p"', description: "Override the rendered HTML element" },
+    { name: "children", type: "ReactNode", description: "Content to display inside the text element" },
+  ];
+
+  const displayTextProps: PropDef[] = [
+    { name: "size", type: '"xl" | "lg" | "md"', default: '"lg"', description: "Controls font size and line height" },
+    { name: "children", type: "ReactNode", description: "Content to display — typically a large number or stat" },
+  ];
+
   return (
     <div style={{ maxWidth: "64rem" }}>
       <PageHeader
@@ -16,7 +34,7 @@ export default function TypographyPage() {
         count={3}
       />
 
-      <DemoSection id="heading" title="Heading" usage={`import { Heading } from "@jireh-health/ui/components/Heading";
+      <DemoSection id="heading" title="Heading" props={headingProps} usage={`import { Heading } from "@jireh-health/ui/components/Heading";
 
 <Heading level={1}>Page Title</Heading>
 <Heading level={2}>Section Title</Heading>
@@ -29,7 +47,7 @@ export default function TypographyPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="text" title="Text" usage={`import { Text } from "@jireh-health/ui/components/Text";
+      <DemoSection id="text" title="Text" props={textProps} usage={`import { Text } from "@jireh-health/ui/components/Text";
 
 <Text variant="body">Standard body text content.</Text>
 <Text variant="body-sm" color="muted">Secondary caption text.</Text>
@@ -57,7 +75,7 @@ export default function TypographyPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="display-text" title="DisplayText" usage={`import { DisplayText } from "@jireh-health/ui/components/DisplayText";
+      <DemoSection id="display-text" title="DisplayText" props={displayTextProps} usage={`import { DisplayText } from "@jireh-health/ui/components/DisplayText";
 
 <DisplayText size="xl">KES 124,800</DisplayText>
 <DisplayText size="md">KES 8,750</DisplayText>`}>

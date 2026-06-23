@@ -5,10 +5,26 @@ import { Stack } from "@jireh-health/ui/components/Stack";
 import { Text } from "@jireh-health/ui/components/Text";
 import { Button } from "@jireh-health/ui/components/Button";
 import { IconButton } from "@jireh-health/ui/components/IconButton";
-import { DemoSection, PageHeader } from "@/components/DemoSection";
+import { DemoSection, PageHeader, type PropDef } from "@/components/DemoSection";
 import { GearIcon, TrashIcon, PlusIcon } from "@/components/Icons";
 
 export default function ActionsPage() {
+  const buttonProps: PropDef[] = [
+    { name: "children", type: "ReactNode", description: "Button label / content." },
+    { name: "variant", type: '"primary" | "secondary" | "ghost" | "destructive" | "outline" | "bubblegum" | "link"', default: '"primary"', description: "Visual style of the button." },
+    { name: "size", type: '"sm" | "md" | "lg" | "icon"', default: '"md"', description: "Controls height and padding. Ignored when variant is \"link\"." },
+    { name: "loading", type: "boolean", default: "false", description: "Shows a spinner, disables interaction, and reduces opacity." },
+    { name: "iconLeft", type: "ReactNode", description: "Icon rendered before children. Hidden while loading." },
+    { name: "iconRight", type: "ReactNode", description: "Icon rendered after children. Hidden while loading." },
+  ];
+
+  const iconButtonProps: PropDef[] = [
+    { name: "icon", type: "ReactNode", required: true, description: "The icon element to render inside the button." },
+    { name: "label", type: "string", required: true, description: "Accessible label applied as aria-label." },
+    { name: "variant", type: '"default" | "ghost" | "destructive"', default: '"default"', description: "Visual style of the icon button." },
+    { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Controls the width and height of the button." },
+  ];
+
   return (
     <div style={{ maxWidth: "64rem" }}>
       <PageHeader
@@ -17,7 +33,7 @@ export default function ActionsPage() {
         count={2}
       />
 
-      <DemoSection id="button" title="Button" usage={`import { Button } from "@jireh-health/ui/components/Button";
+      <DemoSection id="button" title="Button" props={buttonProps} usage={`import { Button } from "@jireh-health/ui/components/Button";
 
 <Button variant="primary" onClick={handleClick}>
   Pay now
@@ -59,7 +75,7 @@ export default function ActionsPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="icon-button" title="IconButton" usage={`import { IconButton } from "@jireh-health/ui/components/IconButton";
+      <DemoSection id="icon-button" title="IconButton" props={iconButtonProps} usage={`import { IconButton } from "@jireh-health/ui/components/IconButton";
 
 <IconButton
   icon={<GearIcon />}

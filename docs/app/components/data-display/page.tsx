@@ -16,9 +16,67 @@ import { Timeline } from "@jireh-health/ui/components/Timeline";
 import { Accordion } from "@jireh-health/ui/components/Accordion";
 import { MapView, MapControlButton } from "@jireh-health/ui/components/MapView";
 import { SearchField } from "@jireh-health/ui/components/SearchField";
-import { DemoSection, PageHeader } from "@/components/DemoSection";
+import { DemoSection, PageHeader, type PropDef } from "@/components/DemoSection";
 
 export default function DataDisplayPage() {
+  const cardProps: PropDef[] = [
+    { name: "padding", type: '"none" | "sm" | "md" | "lg"', default: '"md"', description: "Inner padding of the card." },
+    { name: "elevated", type: "boolean", default: "false", description: "Adds a subtle box-shadow to lift the card visually." },
+    { name: "CardHeader.title", type: "string", required: true, description: "Heading text displayed in the card header." },
+    { name: "CardHeader.subtitle", type: "string", description: "Secondary text below the header title." },
+    { name: "CardHeader.action", type: "ReactNode", description: "Slot for an action element (e.g. a button) aligned to the right of the header." },
+    { name: "CardFooter.align", type: '"start" | "end" | "between"', default: '"end"', description: "Horizontal alignment of footer content." },
+  ];
+
+  const badgeProps: PropDef[] = [
+    { name: "variant", type: '"default" | "success" | "error" | "warning" | "info" | "brand" | "outline"', default: '"default"', description: "Visual style of the badge." },
+    { name: "size", type: '"sm" | "md"', default: '"md"', description: "Controls padding and density of the badge." },
+    { name: "children", type: "ReactNode", required: true, description: "The label content rendered inside the badge." },
+  ];
+
+  const tagProps: PropDef[] = [
+    { name: "label", type: "string", required: true, description: "Text displayed inside the tag." },
+    { name: "variant", type: '"default" | "brand"', default: '"default"', description: "Visual style of the tag." },
+    { name: "onRemove", type: "() => void", description: "Callback fired when the remove button is clicked. When provided, a dismiss icon is shown." },
+  ];
+
+  const avatarProps: PropDef[] = [
+    { name: "alt", type: "string", required: true, description: "Accessible alt text. The first letter is used as a fallback initial when no image is available." },
+    { name: "src", type: "string", description: "URL of the avatar image. Falls back to an initial when the image fails to load or is omitted." },
+    { name: "size", type: '"sm" | "md" | "lg" | "xl"', default: '"md"', description: "Diameter of the avatar (28 / 36 / 48 / 64 px)." },
+  ];
+
+  const dataTableProps: PropDef[] = [
+    { name: "columns", type: "DataTableColumn[]", required: true, description: "Array of column definitions. Each column has a key, header label, and optional sortable flag." },
+    { name: "data", type: "Record<string, any>[]", required: true, description: "Array of row objects keyed by column key." },
+    { name: "sortable", type: "boolean", default: "false", description: "Enables column-header click-to-sort. Individual columns can opt out via sortable: false." },
+  ];
+
+  const descriptionListProps: PropDef[] = [
+    { name: "items", type: "DescriptionListItem[]", required: true, description: "Array of { term, description } pairs to display." },
+    { name: "layout", type: '"vertical" | "horizontal"', required: true, description: "Stacks term above description (vertical) or places them side-by-side (horizontal)." },
+  ];
+
+  const timelineProps: PropDef[] = [
+    { name: "items", type: "TimelineItem[]", required: true, description: "Array of timeline entries. Each item has a date, title, and optional description." },
+  ];
+
+  const accordionProps: PropDef[] = [
+    { name: "items", type: "AccordionItem[]", required: true, description: "Array of sections. Each item has a title, content (ReactNode), and optional defaultOpen flag." },
+  ];
+
+  const mapViewProps: PropDef[] = [
+    { name: "renderMap", type: "(props: { markers: MapMarker[] }) => ReactNode", required: true, description: "Render callback that supplies the actual map implementation (Google Maps, Mapbox, etc.)." },
+    { name: "markers", type: "MapMarker[]", default: "[]", description: "Array of map markers with id, lat, lng, and optional label." },
+    { name: "searchBar", type: "ReactNode", description: "Slot for a search input overlaid at the top of the map." },
+    { name: "controls", type: "ReactNode", description: "Slot for control buttons (zoom, recenter) overlaid at the bottom-right." },
+    { name: "onMarkerSelect", type: "(marker: MapMarker) => void", description: "Callback fired when a marker is selected." },
+    { name: "selectedMarkerId", type: "string", description: "ID of the currently selected marker." },
+    { name: "height", type: "string | number", default: '"100%"', description: "Height of the map container." },
+    { name: "children", type: "ReactNode", description: "Bottom info-panel slot, rendered as an overlay above the map." },
+    { name: "MapControlButton.label", type: "string", required: true, description: "Accessible label for the control button (used as aria-label)." },
+  ];
+
   return (
     <div style={{ maxWidth: "64rem" }}>
       <PageHeader
@@ -27,7 +85,7 @@ export default function DataDisplayPage() {
         count={9}
       />
 
-      <DemoSection id="card" title="Card + CardHeader + CardFooter" usage={`import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@jireh-health/ui/components/Card";
+      <DemoSection id="card" title="Card + CardHeader + CardFooter" props={cardProps} usage={`import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@jireh-health/ui/components/Card";
 
 <Card padding="none" elevated>
   <CardHeader title="Care Saver" subtitle="Monthly savings" />
@@ -74,7 +132,7 @@ export default function DataDisplayPage() {
         </Grid>
       </DemoSection>
 
-      <DemoSection id="badge" title="Badge" usage={`import { Badge } from "@jireh-health/ui/components/Badge";
+      <DemoSection id="badge" title="Badge" props={badgeProps} usage={`import { Badge } from "@jireh-health/ui/components/Badge";
 
 <Badge variant="success">Approved</Badge>
 <Badge variant="warning">Low Balance</Badge>
@@ -88,7 +146,7 @@ export default function DataDisplayPage() {
         </Inline>
       </DemoSection>
 
-      <DemoSection id="tag" title="Tag" usage={`import { Tag } from "@jireh-health/ui/components/Tag";
+      <DemoSection id="tag" title="Tag" props={tagProps} usage={`import { Tag } from "@jireh-health/ui/components/Tag";
 
 <Tag label="Diabetes" variant="default" />
 <Tag label="Hypertension" variant="brand" />
@@ -101,7 +159,7 @@ export default function DataDisplayPage() {
         </Inline>
       </DemoSection>
 
-      <DemoSection id="avatar" title="Avatar" usage={`import { Avatar } from "@jireh-health/ui/components/Avatar";
+      <DemoSection id="avatar" title="Avatar" props={avatarProps} usage={`import { Avatar } from "@jireh-health/ui/components/Avatar";
 
 <Avatar alt="Sarah Wanjiku" size="sm" />
 <Avatar alt="Dr. Ochieng" size="lg" src="/avatars/dr-ochieng.jpg" />`}>
@@ -113,7 +171,7 @@ export default function DataDisplayPage() {
         </Inline>
       </DemoSection>
 
-      <DemoSection id="data-table" title="DataTable" usage={`import { DataTable } from "@jireh-health/ui/components/DataTable";
+      <DemoSection id="data-table" title="DataTable" props={dataTableProps} usage={`import { DataTable } from "@jireh-health/ui/components/DataTable";
 
 <DataTable
   sortable
@@ -149,7 +207,7 @@ export default function DataDisplayPage() {
         </div>
       </DemoSection>
 
-      <DemoSection id="description-list" title="DescriptionList" usage={`import { DescriptionList } from "@jireh-health/ui/components/DescriptionList";
+      <DemoSection id="description-list" title="DescriptionList" props={descriptionListProps} usage={`import { DescriptionList } from "@jireh-health/ui/components/DescriptionList";
 
 <DescriptionList
   layout="vertical"
@@ -187,7 +245,7 @@ export default function DataDisplayPage() {
         </Grid>
       </DemoSection>
 
-      <DemoSection id="timeline" title="Timeline" usage={`import { Timeline } from "@jireh-health/ui/components/Timeline";
+      <DemoSection id="timeline" title="Timeline" props={timelineProps} usage={`import { Timeline } from "@jireh-health/ui/components/Timeline";
 
 <Timeline
   items={[
@@ -206,7 +264,7 @@ export default function DataDisplayPage() {
         />
       </DemoSection>
 
-      <DemoSection id="accordion" title="Accordion" usage={`import { Accordion } from "@jireh-health/ui/components/Accordion";
+      <DemoSection id="accordion" title="Accordion" props={accordionProps} usage={`import { Accordion } from "@jireh-health/ui/components/Accordion";
 
 <Accordion
   items={[
@@ -260,7 +318,7 @@ export default function DataDisplayPage() {
         />
       </DemoSection>
 
-      <DemoSection id="map-view" title="MapView" usage={`import { MapView, MapControlButton } from "@jireh-health/ui/components/MapView";
+      <DemoSection id="map-view" title="MapView" props={mapViewProps} usage={`import { MapView, MapControlButton } from "@jireh-health/ui/components/MapView";
 import { SearchField } from "@jireh-health/ui/components/SearchField";
 
 <MapView

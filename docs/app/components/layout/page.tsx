@@ -8,9 +8,59 @@ import { Grid } from "@jireh-health/ui/components/Grid";
 import { Divider } from "@jireh-health/ui/components/Divider";
 import { ScrollArea } from "@jireh-health/ui/components/ScrollArea";
 import { Text } from "@jireh-health/ui/components/Text";
-import { DemoSection, PageHeader } from "@/components/DemoSection";
+import { DemoSection, PageHeader, type PropDef } from "@/components/DemoSection";
 
 export default function LayoutPage() {
+  const boxProps: PropDef[] = [
+    { name: "as", type: "ElementType", default: '"div"', description: "HTML element or component to render as" },
+    { name: "padding", type: "string", description: "Inner padding using space scale tokens" },
+    { name: "paddingX", type: "string", description: "Horizontal padding (left and right) using space scale tokens" },
+    { name: "paddingY", type: "string", description: "Vertical padding (top and bottom) using space scale tokens" },
+    { name: "margin", type: "string", description: "Outer margin using space scale tokens" },
+    { name: "bg", type: "string", description: "Background color using a semantic color token name" },
+    { name: "border", type: "string", description: "CSS border shorthand value" },
+    { name: "radius", type: "string", description: "Border radius using radius scale tokens" },
+    { name: "shadow", type: "string", description: "CSS box-shadow value" },
+    { name: "display", type: "CSSProperties['display']", description: "CSS display property" },
+    { name: "flex", type: "CSSProperties['flex']", description: "CSS flex shorthand property" },
+    { name: "gap", type: "string", description: "Gap between children using space scale tokens" },
+    { name: "overflow", type: "CSSProperties['overflow']", description: "CSS overflow property" },
+  ];
+
+  const stackProps: PropDef[] = [
+    { name: "as", type: "ElementType", default: '"div"', description: "HTML element or component to render as" },
+    { name: "gap", type: "string", default: '"4"', description: "Vertical gap between children using space scale tokens" },
+    { name: "align", type: '"flex-start" | "center" | "flex-end" | "stretch" | "baseline"', description: "Cross-axis alignment of children" },
+  ];
+
+  const inlineProps: PropDef[] = [
+    { name: "as", type: "ElementType", default: '"div"', description: "HTML element or component to render as" },
+    { name: "gap", type: "string", default: '"3"', description: "Horizontal gap between children using space scale tokens" },
+    { name: "align", type: '"flex-start" | "center" | "flex-end" | "stretch" | "baseline"', description: "Cross-axis alignment of children" },
+    { name: "wrap", type: "boolean", default: "true", description: "Whether children wrap to the next line when they overflow" },
+  ];
+
+  const containerProps: PropDef[] = [
+    { name: "size", type: '"narrow" | "content" | "wide"', default: '"content"', description: "Max-width preset — narrow (680px), content (960px), or wide (1200px)" },
+  ];
+
+  const gridProps: PropDef[] = [
+    { name: "columns", type: "number | string", description: "Number of columns or a custom grid-template-columns value" },
+    { name: "minChildWidth", type: "string", description: "Minimum child width for responsive auto-fill grid (e.g. \"180px\")" },
+    { name: "gap", type: "string", default: '"4"', description: "Gap between grid cells using space scale tokens" },
+  ];
+
+  const dividerProps: PropDef[] = [
+    { name: "orientation", type: '"horizontal" | "vertical"', default: '"horizontal"', description: "Direction of the divider line" },
+    { name: "variant", type: '"default" | "strong" | "subtle"', default: '"default"', description: "Visual weight of the divider" },
+  ];
+
+  const scrollAreaProps: PropDef[] = [
+    { name: "children", type: "ReactNode", required: true, description: "Scrollable content" },
+    { name: "orientation", type: '"vertical" | "horizontal" | "both"', default: '"vertical"', description: "Which axes are scrollable" },
+    { name: "thumbSize", type: "number", default: "6", description: "Width of the custom scrollbar thumb in pixels" },
+  ];
+
   return (
     <div style={{ maxWidth: "64rem" }}>
       <PageHeader
@@ -19,7 +69,7 @@ export default function LayoutPage() {
         count={7}
       />
 
-      <DemoSection id="box" title="Box" usage={`import { Box } from "@jireh-health/ui/components/Box";
+      <DemoSection id="box" title="Box" props={boxProps} usage={`import { Box } from "@jireh-health/ui/components/Box";
 
 <Box padding="4" bg="surface-muted" radius="md">
   Content goes here
@@ -37,7 +87,7 @@ export default function LayoutPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="stack" title="Stack" usage={`import { Stack } from "@jireh-health/ui/components/Stack";
+      <DemoSection id="stack" title="Stack" props={stackProps} usage={`import { Stack } from "@jireh-health/ui/components/Stack";
 
 <Stack gap="4">
   <div>First item</div>
@@ -57,7 +107,7 @@ export default function LayoutPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="inline" title="Inline" usage={`import { Inline } from "@jireh-health/ui/components/Inline";
+      <DemoSection id="inline" title="Inline" props={inlineProps} usage={`import { Inline } from "@jireh-health/ui/components/Inline";
 
 <Inline gap="3">
   <span>Tag 1</span>
@@ -80,7 +130,7 @@ export default function LayoutPage() {
         </Inline>
       </DemoSection>
 
-      <DemoSection id="container" title="Container" usage={`import { Container } from "@jireh-health/ui/components/Container";
+      <DemoSection id="container" title="Container" props={containerProps} usage={`import { Container } from "@jireh-health/ui/components/Container";
 
 <Container size="content">
   <p>Centered, max-width content area</p>
@@ -110,7 +160,7 @@ export default function LayoutPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="grid" title="Grid" usage={`import { Grid } from "@jireh-health/ui/components/Grid";
+      <DemoSection id="grid" title="Grid" props={gridProps} usage={`import { Grid } from "@jireh-health/ui/components/Grid";
 
 <Grid columns={3} gap="3">
   <div>Cell 1</div>
@@ -156,7 +206,7 @@ export default function LayoutPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="divider" title="Divider" usage={`import { Divider } from "@jireh-health/ui/components/Divider";
+      <DemoSection id="divider" title="Divider" props={dividerProps} usage={`import { Divider } from "@jireh-health/ui/components/Divider";
 
 <Divider />
 <Divider variant="subtle" />
@@ -188,7 +238,7 @@ export default function LayoutPage() {
           </div>
         </Stack>
       </DemoSection>
-      <DemoSection id="scroll-area" title="ScrollArea" usage={`import { ScrollArea } from "@jireh-health/ui/components/ScrollArea";
+      <DemoSection id="scroll-area" title="ScrollArea" props={scrollAreaProps} usage={`import { ScrollArea } from "@jireh-health/ui/components/ScrollArea";
 
 <ScrollArea style={{ height: 200 }}>
   <div>Scrollable content here...</div>
