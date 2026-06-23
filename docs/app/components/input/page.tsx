@@ -11,6 +11,9 @@ import { Checkbox } from "@jireh-health/ui/components/Checkbox";
 import { RadioGroup } from "@jireh-health/ui/components/RadioGroup";
 import { Switch } from "@jireh-health/ui/components/Switch";
 import { InputOtp } from "@jireh-health/ui/components/InputOtp";
+import { Label } from "@jireh-health/ui/components/Label";
+import { Calendar } from "@jireh-health/ui/components/Calendar";
+import { SearchableSelect } from "@jireh-health/ui/components/SearchableSelect";
 import { DemoSection, PageHeader } from "@/components/DemoSection";
 
 export default function InputPage() {
@@ -19,13 +22,15 @@ export default function InputPage() {
   const [switchChecked, setSwitchChecked] = useState(true);
   const [switchSm, setSwitchSm] = useState(false);
   const [otpValue, setOtpValue] = useState("38");
+  const [calendarDate, setCalendarDate] = useState<Date | null>(null);
+  const [selectableValue, setSelectableValue] = useState("");
 
   return (
     <div style={{ maxWidth: "64rem" }}>
       <PageHeader
         title="Selection & Input"
-        description="Form controls for collecting user data — text fields, selects, checkboxes, radios, switches, and OTP."
-        count={8}
+        description="Form controls for collecting user data — text fields, selects, checkboxes, radios, switches, OTP, labels, calendars, and searchable selects."
+        count={11}
       />
 
       <DemoSection id="text-field" title="TextField">
@@ -132,6 +137,49 @@ export default function InputPage() {
             Enter the 6-digit code sent to +254 712 XXX XXX
           </Text>
           <InputOtp length={6} value={otpValue} onChange={setOtpValue} />
+        </Stack>
+      </DemoSection>
+
+      <DemoSection id="label" title="Label">
+        <Stack gap="3">
+          <Label htmlFor="demo-name">Patient name</Label>
+          <Label htmlFor="demo-required" required>Phone number</Label>
+          <Label htmlFor="demo-disabled" disabled>Archived field (read-only)</Label>
+        </Stack>
+      </DemoSection>
+
+      <DemoSection id="calendar" title="Calendar">
+        <Stack gap="3">
+          <Text variant="body-sm" color="muted">
+            {calendarDate
+              ? `Selected: ${calendarDate.toLocaleDateString("en-KE", { dateStyle: "long" })}`
+              : "Pick an appointment date"}
+          </Text>
+          <Calendar value={calendarDate} onChange={setCalendarDate} />
+        </Stack>
+      </DemoSection>
+
+      <DemoSection id="searchable-select" title="SearchableSelect">
+        <Stack gap="4">
+          <SearchableSelect
+            options={[
+              { value: "nairobi-hospital", label: "Nairobi Hospital" },
+              { value: "kenyatta-national", label: "Kenyatta National Hospital" },
+              { value: "aga-khan", label: "Aga Khan University Hospital" },
+              { value: "mp-shah", label: "MP Shah Hospital" },
+              { value: "gertrudes", label: "Gertrude's Children's Hospital" },
+              { value: "mater", label: "Mater Hospital" },
+              { value: "avenue", label: "Avenue Hospital" },
+              { value: "karen", label: "Karen Hospital" },
+            ]}
+            value={selectableValue}
+            onChange={setSelectableValue}
+            placeholder="Search for a hospital..."
+            searchPlaceholder="Type to filter..."
+          />
+          <Text variant="body-sm" color="muted">
+            {selectableValue ? `Selected: ${selectableValue}` : "No provider selected"}
+          </Text>
         </Stack>
       </DemoSection>
     </div>

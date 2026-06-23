@@ -27,6 +27,7 @@ export const navigation: NavItem[] = [
           { label: "Box / Stack / Inline", href: "/components/layout#box-stack-inline" },
           { label: "Container / Grid", href: "/components/layout#container-grid" },
           { label: "Divider", href: "/components/layout#divider" },
+          { label: "ScrollArea", href: "/components/layout#scroll-area" },
         ],
       },
       {
@@ -58,6 +59,9 @@ export const navigation: NavItem[] = [
           { label: "RadioGroup", href: "/components/input#radio-group" },
           { label: "Switch", href: "/components/input#switch" },
           { label: "InputOtp", href: "/components/input#input-otp" },
+          { label: "Label", href: "/components/input#label" },
+          { label: "Calendar", href: "/components/input#calendar" },
+          { label: "SearchableSelect", href: "/components/input#searchable-select" },
         ],
       },
       {
@@ -67,6 +71,7 @@ export const navigation: NavItem[] = [
           { label: "Tabs", href: "/components/navigation#tabs" },
           { label: "Breadcrumb", href: "/components/navigation#breadcrumb" },
           { label: "Pagination", href: "/components/navigation#pagination" },
+          { label: "Navbar", href: "/components/navigation#navbar" },
         ],
       },
       {
@@ -81,6 +86,7 @@ export const navigation: NavItem[] = [
           { label: "ProgressBar", href: "/components/feedback#progress-bar" },
           { label: "Skeleton", href: "/components/feedback#skeleton" },
           { label: "EmptyState", href: "/components/feedback#empty-state" },
+          { label: "AlertDialog", href: "/components/feedback#alert-dialog" },
         ],
       },
       {
@@ -95,6 +101,7 @@ export const navigation: NavItem[] = [
           { label: "DescriptionList", href: "/components/data-display#description-list" },
           { label: "Timeline", href: "/components/data-display#timeline" },
           { label: "Accordion", href: "/components/data-display#accordion" },
+          { label: "MapView", href: "/components/data-display#map-view" },
         ],
       },
       {
@@ -103,6 +110,9 @@ export const navigation: NavItem[] = [
         children: [
           { label: "Tooltip", href: "/components/overlays#tooltip" },
           { label: "DropdownMenu", href: "/components/overlays#dropdown-menu" },
+          { label: "Popover", href: "/components/overlays#popover" },
+          { label: "Sheet", href: "/components/overlays#sheet" },
+          { label: "BottomSheet", href: "/components/overlays#bottom-sheet" },
         ],
       },
       {

@@ -6,6 +6,7 @@ import { Inline } from "@jireh-health/ui/components/Inline";
 import { Container } from "@jireh-health/ui/components/Container";
 import { Grid } from "@jireh-health/ui/components/Grid";
 import { Divider } from "@jireh-health/ui/components/Divider";
+import { ScrollArea } from "@jireh-health/ui/components/ScrollArea";
 import { Text } from "@jireh-health/ui/components/Text";
 import { DemoSection, PageHeader } from "@/components/DemoSection";
 
@@ -14,8 +15,8 @@ export default function LayoutPage() {
     <div style={{ maxWidth: "64rem" }}>
       <PageHeader
         title="Layout"
-        description="Primitives for arranging content — Box, Stack, Inline, Container, Grid, and Divider."
-        count={6}
+        description="Primitives for arranging content — Box, Stack, Inline, Container, Grid, Divider, and ScrollArea."
+        count={7}
       />
 
       <DemoSection id="box" title="Box">
@@ -156,6 +157,30 @@ export default function LayoutPage() {
             </Inline>
           </div>
         </Stack>
+      </DemoSection>
+      <DemoSection id="scroll-area" title="ScrollArea">
+        <ScrollArea style={{ height: 200, border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)" }}>
+          <Stack gap="3" style={{ padding: "var(--space-3)" }}>
+            {[
+              "Nairobi Hospital — Outpatient",
+              "Aga Khan University Hospital — Consultation",
+              "Kenyatta National Hospital — Laboratory",
+              "MP Shah Hospital — Radiology",
+              "Gertrude's Children's Hospital — Paediatrics",
+              "Mater Hospital — Pharmacy",
+              "Avenue Hospital — Dental",
+              "Karen Hospital — Oncology",
+              "Coptic Hospital — Surgery",
+              "Ruiru Sub-County Hospital — General",
+              "Kiambu Level 5 Hospital — ENT",
+              "Thika Level 5 Hospital — Physiotherapy",
+            ].map((item) => (
+              <Box key={item} padding="3" bg="surface-muted" radius="sm">
+                <Text variant="body-sm">{item}</Text>
+              </Box>
+            ))}
+          </Stack>
+        </ScrollArea>
       </DemoSection>
     </div>
   );

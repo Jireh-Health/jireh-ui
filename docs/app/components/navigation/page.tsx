@@ -6,6 +6,9 @@ import { Text } from "@jireh-health/ui/components/Text";
 import { Tabs } from "@jireh-health/ui/components/Tabs";
 import { Breadcrumb } from "@jireh-health/ui/components/Breadcrumb";
 import { Pagination } from "@jireh-health/ui/components/Pagination";
+import { Navbar, NavbarItem } from "@jireh-health/ui/components/Navbar";
+import { Button } from "@jireh-health/ui/components/Button";
+import { Avatar } from "@jireh-health/ui/components/Avatar";
 import { DemoSection, PageHeader } from "@/components/DemoSection";
 
 export default function NavigationPage() {
@@ -16,8 +19,8 @@ export default function NavigationPage() {
     <div style={{ maxWidth: "64rem" }}>
       <PageHeader
         title="Navigation"
-        description="Components for moving between views — Tabs, Breadcrumb, and Pagination."
-        count={3}
+        description="Components for moving between views — Tabs, Breadcrumb, Pagination, and Navbar."
+        count={4}
       />
 
       <DemoSection id="tabs" title="Tabs">
@@ -92,6 +95,32 @@ export default function NavigationPage() {
               Simple variant
             </Text>
             <Pagination totalPages={5} currentPage={simplePage} onChange={setSimplePage} variant="simple" />
+          </div>
+        </Stack>
+      </DemoSection>
+
+      <DemoSection id="navbar" title="Navbar">
+        <Stack gap="4">
+          <div style={{ border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)", overflow: "hidden" }}>
+            <Navbar
+              sticky={false}
+              logo={
+                <span style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: "var(--text-lg)", color: "var(--color-jireh-purple)" }}>
+                  Jireh
+                </span>
+              }
+              actions={
+                <>
+                  <Button variant="ghost" size="sm">Help</Button>
+                  <Avatar alt="Sarah W" size="sm" />
+                </>
+              }
+            >
+              <NavbarItem active>Dashboard</NavbarItem>
+              <NavbarItem>Payments</NavbarItem>
+              <NavbarItem>Circles</NavbarItem>
+              <NavbarItem>Discover</NavbarItem>
+            </Navbar>
           </div>
         </Stack>
       </DemoSection>

@@ -14,6 +14,8 @@ import { DataTable } from "@jireh-health/ui/components/DataTable";
 import { DescriptionList } from "@jireh-health/ui/components/DescriptionList";
 import { Timeline } from "@jireh-health/ui/components/Timeline";
 import { Accordion } from "@jireh-health/ui/components/Accordion";
+import { MapView, MapControlButton } from "@jireh-health/ui/components/MapView";
+import { SearchField } from "@jireh-health/ui/components/SearchField";
 import { DemoSection, PageHeader } from "@/components/DemoSection";
 
 export default function DataDisplayPage() {
@@ -21,8 +23,8 @@ export default function DataDisplayPage() {
     <div style={{ maxWidth: "64rem" }}>
       <PageHeader
         title="Data Display"
-        description="Components for presenting data — Cards, Badges, Tags, Avatars, Tables, Timelines, and more."
-        count={8}
+        description="Components for presenting data — Cards, Badges, Tags, Avatars, Tables, Timelines, MapView, and more."
+        count={9}
       />
 
       <DemoSection id="card" title="Card + CardHeader + CardFooter">
@@ -189,6 +191,58 @@ export default function DataDisplayPage() {
             },
           ]}
         />
+      </DemoSection>
+
+      <DemoSection id="map-view" title="MapView">
+        <Stack gap="3">
+          <Text variant="body-sm" color="muted">
+            MapView provides the chrome (search bar, controls, info card) — the consumer supplies the actual map via <code style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-xs)", background: "var(--bg-surface-muted)", padding: "2px 4px", borderRadius: "var(--radius-sm)" }}>renderMap</code>.
+          </Text>
+          <MapView
+            height={320}
+            markers={[
+              { id: "1", lat: -1.2921, lng: 36.8219, label: "Nairobi Hospital" },
+              { id: "2", lat: -1.2635, lng: 36.8073, label: "Aga Khan" },
+            ]}
+            renderMap={() => (
+              <div style={{
+                width: "100%",
+                height: "100%",
+                background: "var(--bg-surface-muted)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: "var(--font-sans)",
+                fontSize: "var(--text-sm)",
+                color: "var(--fg-subtle)",
+              }}>
+                Map tiles go here (Google Maps, Mapbox, etc.)
+              </div>
+            )}
+            searchBar={
+              <SearchField
+                placeholder="Search hospitals near you..."
+                value=""
+                onChange={() => {}}
+                onClear={() => {}}
+                style={{ background: "var(--bg-surface)", boxShadow: "var(--shadow-md)", borderRadius: "var(--radius-lg)" }}
+              />
+            }
+            controls={
+              <>
+                <MapControlButton label="Zoom in">+</MapControlButton>
+                <MapControlButton label="Zoom out">−</MapControlButton>
+              </>
+            }
+          >
+            <Card padding="sm">
+              <CardContent>
+                <Text variant="body-sm" style={{ fontWeight: 600 }}>Nairobi Hospital</Text>
+                <Text variant="body-sm" color="muted">2.1 km away · In-network</Text>
+              </CardContent>
+            </Card>
+          </MapView>
+        </Stack>
       </DemoSection>
     </div>
   );

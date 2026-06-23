@@ -9,8 +9,8 @@ const categories = [
   {
     title: "Layout",
     href: "/components/layout",
-    description: "Box, Stack, Inline, Container, Grid, and Divider for spatial structure.",
-    count: 6,
+    description: "Box, Stack, Inline, Container, Grid, Divider, and ScrollArea for spatial structure.",
+    count: 7,
   },
   {
     title: "Typography",
@@ -27,32 +27,32 @@ const categories = [
   {
     title: "Selection & Input",
     href: "/components/input",
-    description: "TextField, TextArea, SearchField, Select, Checkbox, RadioGroup, Switch, and InputOtp.",
-    count: 8,
+    description: "TextField, TextArea, SearchField, Select, Checkbox, RadioGroup, Switch, InputOtp, Label, Calendar, and SearchableSelect.",
+    count: 11,
   },
   {
     title: "Navigation",
     href: "/components/navigation",
-    description: "Tabs, Breadcrumb, and Pagination for moving between views.",
-    count: 3,
+    description: "Tabs, Breadcrumb, Pagination, and Navbar for moving between views.",
+    count: 4,
   },
   {
     title: "Feedback & Status",
     href: "/components/feedback",
-    description: "Alert, Toast, Dialog, Drawer, Loader, ProgressBar, Skeleton, and EmptyState.",
-    count: 8,
+    description: "Alert, Toast, Dialog, Drawer, AlertDialog, Loader, ProgressBar, Skeleton, and EmptyState.",
+    count: 9,
   },
   {
     title: "Data Display",
     href: "/components/data-display",
-    description: "Card, Badge, Tag, Avatar, DataTable, DescriptionList, Timeline, and Accordion.",
-    count: 8,
+    description: "Card, Badge, Tag, Avatar, DataTable, DescriptionList, Timeline, Accordion, and MapView.",
+    count: 9,
   },
   {
     title: "Overlays",
     href: "/components/overlays",
-    description: "Tooltip and DropdownMenu for contextual content.",
-    count: 2,
+    description: "Tooltip, DropdownMenu, Popover, Sheet, and BottomSheet for layered content.",
+    count: 5,
   },
   {
     title: "Healthcare",

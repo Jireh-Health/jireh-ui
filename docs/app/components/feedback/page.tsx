@@ -15,6 +15,17 @@ import { ProgressBar } from "@jireh-health/ui/components/ProgressBar";
 import { Skeleton } from "@jireh-health/ui/components/Skeleton";
 import { EmptyState } from "@jireh-health/ui/components/EmptyState";
 import { DescriptionList } from "@jireh-health/ui/components/DescriptionList";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@jireh-health/ui/components/AlertDialog";
 import { DemoSection, PageHeader } from "@/components/DemoSection";
 
 export default function FeedbackPage() {
@@ -25,8 +36,8 @@ export default function FeedbackPage() {
     <div style={{ maxWidth: "64rem" }}>
       <PageHeader
         title="Feedback & Status"
-        description="Alerts, toasts, dialogs, drawers, loaders, progress bars, skeletons, and empty states."
-        count={8}
+        description="Alerts, toasts, dialogs, drawers, loaders, progress bars, skeletons, empty states, and alert dialogs."
+        count={9}
       />
 
       <DemoSection id="alert" title="Alert">
@@ -153,6 +164,31 @@ export default function FeedbackPage() {
           description="Once you make your first payment through Jireh, your transaction history will appear here."
           action={<Button variant="primary" size="sm">Make a payment</Button>}
         />
+      </DemoSection>
+
+      <DemoSection id="alert-dialog" title="AlertDialog">
+        <Stack gap="3">
+          <Text variant="body-sm" color="muted">
+            Unlike Dialog, AlertDialog cannot be dismissed by clicking the backdrop — the user must explicitly confirm or cancel.
+          </Text>
+          <AlertDialog>
+            <AlertDialogTrigger>
+              <Button variant="destructive" size="sm">Leave Circle</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Leave Wanjiku Family Circle?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. Your trust score will be affected and you will lose access to circle loans. Any outstanding balance must be settled first.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel />
+                <AlertDialogAction>Leave Circle</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </Stack>
       </DemoSection>
     </div>
   );
