@@ -1,10 +1,11 @@
 "use client";
 
-import { forwardRef, type HTMLAttributes } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 
 export type ContainerSize = "narrow" | "content" | "wide";
 
 export interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode;
   size?: ContainerSize;
 }
 

@@ -1,9 +1,10 @@
 "use client";
 
-import { forwardRef, type ElementType, type HTMLAttributes, type CSSProperties } from "react";
+import { forwardRef, type ElementType, type HTMLAttributes, type CSSProperties, type ReactNode } from "react";
 import { resolveSpace, resolveRadius, resolveBg } from "../utils/tokens";
 
 export interface BoxProps extends HTMLAttributes<HTMLElement> {
+  children?: ReactNode;
   as?: ElementType;
   padding?: string;
   paddingX?: string;

@@ -1,11 +1,12 @@
 "use client";
 
-import { forwardRef, type ElementType, type HTMLAttributes } from "react";
+import { forwardRef, type ElementType, type HTMLAttributes, type ReactNode } from "react";
 
 export type TextVariant = "body-lg" | "body" | "body-sm" | "ui" | "mono";
 export type TextColor = "default" | "muted" | "subtle" | "error" | "success";
 
 export interface TextProps extends HTMLAttributes<HTMLElement> {
+  children?: ReactNode;
   variant?: TextVariant;
   color?: TextColor;
   as?: ElementType;

@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, type HTMLAttributes } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 
 export interface BreadcrumbItem {
   label: string;
@@ -8,6 +8,7 @@ export interface BreadcrumbItem {
 }
 
 export interface BreadcrumbProps extends HTMLAttributes<HTMLElement> {
+  children?: ReactNode;
   items: BreadcrumbItem[];
 }
 

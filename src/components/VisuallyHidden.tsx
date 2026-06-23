@@ -1,8 +1,10 @@
 "use client";
 
-import { forwardRef, type HTMLAttributes } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 
-export interface VisuallyHiddenProps extends HTMLAttributes<HTMLSpanElement> {}
+export interface VisuallyHiddenProps extends HTMLAttributes<HTMLSpanElement> {
+  children?: ReactNode;
+}
 
 export const VisuallyHidden = forwardRef<HTMLSpanElement, VisuallyHiddenProps>(function VisuallyHidden(
   { style, ...rest },

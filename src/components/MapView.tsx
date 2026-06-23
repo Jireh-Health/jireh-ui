@@ -14,6 +14,7 @@ export interface MapMarker {
 }
 
 export interface MapViewProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode;
   renderMap: (props: { markers: MapMarker[] }) => ReactNode;
   markers?: MapMarker[];
   searchBar?: ReactNode;
@@ -110,6 +111,7 @@ export const MapView = forwardRef<HTMLDivElement, MapViewProps>(
 );
 
 export interface MapControlButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  children?: ReactNode;
   label: string;
 }
 

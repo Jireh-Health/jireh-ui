@@ -1,10 +1,11 @@
 "use client";
 
-import { forwardRef, type HTMLAttributes } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 
 export type DisplayTextSize = "xl" | "lg" | "md";
 
 export interface DisplayTextProps extends HTMLAttributes<HTMLParagraphElement> {
+  children?: ReactNode;
   size?: DisplayTextSize;
 }
 

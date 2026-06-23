@@ -1,9 +1,10 @@
 "use client";
 
-import { forwardRef, type ElementType, type HTMLAttributes } from "react";
+import { forwardRef, type ElementType, type HTMLAttributes, type ReactNode } from "react";
 import { resolveSpace } from "../utils/tokens";
 
 export interface InlineProps extends HTMLAttributes<HTMLElement> {
+  children?: ReactNode;
   as?: ElementType;
   gap?: string;
   align?: "flex-start" | "center" | "flex-end" | "stretch" | "baseline";

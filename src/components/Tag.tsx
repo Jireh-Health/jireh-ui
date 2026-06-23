@@ -1,10 +1,11 @@
 "use client";
 
-import { forwardRef, type HTMLAttributes } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 
 export type TagVariant = "default" | "brand";
 
 export interface TagProps extends HTMLAttributes<HTMLSpanElement> {
+  children?: ReactNode;
   label: string;
   variant?: TagVariant;
   onRemove?: () => void;

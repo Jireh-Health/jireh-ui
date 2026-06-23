@@ -3,6 +3,7 @@
 import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode;
   padding?: "none" | "sm" | "md" | "lg";
   elevated?: boolean;
 }

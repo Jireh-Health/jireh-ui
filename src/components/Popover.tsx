@@ -76,6 +76,7 @@ export function PopoverTrigger({ children }: PopoverTriggerProps) {
 }
 
 export interface PopoverContentProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode;
   side?: Side;
   align?: Align;
   sideOffset?: number;

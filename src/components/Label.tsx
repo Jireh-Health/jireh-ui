@@ -1,8 +1,9 @@
 "use client";
 
-import { forwardRef, type LabelHTMLAttributes } from "react";
+import { forwardRef, type LabelHTMLAttributes, type ReactNode } from "react";
 
 export interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
+  children?: ReactNode;
   required?: boolean;
   disabled?: boolean;
 }

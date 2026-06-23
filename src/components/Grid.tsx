@@ -1,9 +1,10 @@
 "use client";
 
-import { forwardRef, type HTMLAttributes } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { resolveSpace } from "../utils/tokens";
 
 export interface GridProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode;
   columns?: number | string;
   minChildWidth?: string;
   gap?: string;

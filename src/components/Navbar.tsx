@@ -3,6 +3,7 @@
 import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 
 export interface NavbarProps extends HTMLAttributes<HTMLElement> {
+  children?: ReactNode;
   logo?: ReactNode;
   actions?: ReactNode;
   sticky?: boolean;
@@ -66,6 +67,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(function Navbar(
 });
 
 export interface NavbarItemProps extends HTMLAttributes<HTMLElement> {
+  children?: ReactNode;
   active?: boolean;
   href?: string;
 }

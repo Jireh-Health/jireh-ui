@@ -1,10 +1,11 @@
 "use client";
 
-import { forwardRef, type ElementType, type HTMLAttributes } from "react";
+import { forwardRef, type ElementType, type HTMLAttributes, type ReactNode } from "react";
 
 export type HeadingLevel = 1 | 2 | 3 | 4;
 
 export interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
+  children?: ReactNode;
   level?: HeadingLevel;
   as?: ElementType;
 }
