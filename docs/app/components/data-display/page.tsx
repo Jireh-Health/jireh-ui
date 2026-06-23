@@ -6,7 +6,7 @@ import { Grid } from "@jireh-health/ui/components/Grid";
 import { Text } from "@jireh-health/ui/components/Text";
 import { DisplayText } from "@jireh-health/ui/components/DisplayText";
 import { Button } from "@jireh-health/ui/components/Button";
-import { Card, CardHeader, CardContent, CardFooter } from "@jireh-health/ui/components/Card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@jireh-health/ui/components/Card";
 import { Badge } from "@jireh-health/ui/components/Badge";
 import { Tag } from "@jireh-health/ui/components/Tag";
 import { Avatar } from "@jireh-health/ui/components/Avatar";
@@ -27,7 +27,18 @@ export default function DataDisplayPage() {
         count={9}
       />
 
-      <DemoSection id="card" title="Card + CardHeader + CardFooter">
+      <DemoSection id="card" title="Card + CardHeader + CardFooter" usage={`import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@jireh-health/ui/components/Card";
+
+<Card padding="none" elevated>
+  <CardHeader title="Care Saver" subtitle="Monthly savings" />
+  <CardContent>
+    <CardTitle>KES 24,800</CardTitle>
+    <CardDescription>Target: KES 50,000 by Dec 2026</CardDescription>
+  </CardContent>
+  <CardFooter>
+    <Button size="sm">Top up</Button>
+  </CardFooter>
+</Card>`}>
         <Grid columns={2} gap="4">
           <Card padding="none" elevated>
             <CardHeader
@@ -63,7 +74,11 @@ export default function DataDisplayPage() {
         </Grid>
       </DemoSection>
 
-      <DemoSection id="badge" title="Badge">
+      <DemoSection id="badge" title="Badge" usage={`import { Badge } from "@jireh-health/ui/components/Badge";
+
+<Badge variant="success">Approved</Badge>
+<Badge variant="warning">Low Balance</Badge>
+<Badge variant="error">Overdue</Badge>`}>
         <Inline gap="2">
           <Badge variant="default">Pending</Badge>
           <Badge variant="info">In Review</Badge>
@@ -73,7 +88,11 @@ export default function DataDisplayPage() {
         </Inline>
       </DemoSection>
 
-      <DemoSection id="tag" title="Tag">
+      <DemoSection id="tag" title="Tag" usage={`import { Tag } from "@jireh-health/ui/components/Tag";
+
+<Tag label="Diabetes" variant="default" />
+<Tag label="Hypertension" variant="brand" />
+<Tag label="Removable" variant="default" onRemove={() => {}} />`}>
         <Inline gap="2">
           <Tag label="Diabetes" variant="default" />
           <Tag label="Hypertension" variant="brand" />
@@ -82,7 +101,10 @@ export default function DataDisplayPage() {
         </Inline>
       </DemoSection>
 
-      <DemoSection id="avatar" title="Avatar">
+      <DemoSection id="avatar" title="Avatar" usage={`import { Avatar } from "@jireh-health/ui/components/Avatar";
+
+<Avatar alt="Sarah Wanjiku" size="sm" />
+<Avatar alt="Dr. Ochieng" size="lg" src="/avatars/dr-ochieng.jpg" />`}>
         <Inline gap="3">
           <Avatar alt="Sarah Wanjiku" size="sm" />
           <Avatar alt="John Kamau" size="md" />
@@ -91,7 +113,21 @@ export default function DataDisplayPage() {
         </Inline>
       </DemoSection>
 
-      <DemoSection id="data-table" title="DataTable">
+      <DemoSection id="data-table" title="DataTable" usage={`import { DataTable } from "@jireh-health/ui/components/DataTable";
+
+<DataTable
+  sortable
+  columns={[
+    { key: "date", header: "Date", sortable: true },
+    { key: "provider", header: "Provider" },
+    { key: "amount", header: "Amount (KES)", sortable: true },
+    { key: "status", header: "Status" },
+  ]}
+  data={[
+    { date: "15 Jun 2026", provider: "Nairobi Hospital", amount: "3,200", status: "Completed" },
+    { date: "12 Jun 2026", provider: "Aga Khan", amount: "12,400", status: "Pending" },
+  ]}
+/>`}>
         <div style={{ overflowX: "auto" }}>
           <DataTable
             sortable
@@ -113,7 +149,16 @@ export default function DataDisplayPage() {
         </div>
       </DemoSection>
 
-      <DemoSection id="description-list" title="DescriptionList">
+      <DemoSection id="description-list" title="DescriptionList" usage={`import { DescriptionList } from "@jireh-health/ui/components/DescriptionList";
+
+<DescriptionList
+  layout="vertical"
+  items={[
+    { term: "Patient", description: "Sarah Wanjiku" },
+    { term: "ID Number", description: "29384756" },
+    { term: "Circle", description: "Wanjiku Family Circle" },
+  ]}
+/>`}>
         <Grid columns={2} gap="6">
           <div>
             <Text variant="body-sm" color="muted" style={{ marginBottom: "var(--space-2)" }}>Vertical layout</Text>
@@ -142,7 +187,15 @@ export default function DataDisplayPage() {
         </Grid>
       </DemoSection>
 
-      <DemoSection id="timeline" title="Timeline">
+      <DemoSection id="timeline" title="Timeline" usage={`import { Timeline } from "@jireh-health/ui/components/Timeline";
+
+<Timeline
+  items={[
+    { date: "15 Jun 2026", title: "Payment completed", description: "KES 3,200 paid to Nairobi Hospital." },
+    { date: "14 Jun 2026", title: "Invoice submitted", description: "Sarah uploaded an invoice from Nairobi Hospital." },
+    { date: "12 Jun 2026", title: "Care Saver deposit", description: "KES 5,000 deposited via M-PESA." },
+  ]}
+/>`}>
         <Timeline
           items={[
             { date: "15 Jun 2026", title: "Payment completed", description: "KES 3,200 paid to Nairobi Hospital Pharmacy via Jireh Wallet." },
@@ -153,7 +206,21 @@ export default function DataDisplayPage() {
         />
       </DemoSection>
 
-      <DemoSection id="accordion" title="Accordion">
+      <DemoSection id="accordion" title="Accordion" usage={`import { Accordion } from "@jireh-health/ui/components/Accordion";
+
+<Accordion
+  items={[
+    {
+      title: "What is a Jireh Circle?",
+      content: <Text>A support group that saves together for healthcare.</Text>,
+      defaultOpen: true,
+    },
+    {
+      title: "How does Care Saver work?",
+      content: <Text>A dedicated healthcare savings account with auto-debit from M-PESA.</Text>,
+    },
+  ]}
+/>`}>
         <Accordion
           items={[
             {
@@ -193,7 +260,24 @@ export default function DataDisplayPage() {
         />
       </DemoSection>
 
-      <DemoSection id="map-view" title="MapView">
+      <DemoSection id="map-view" title="MapView" usage={`import { MapView, MapControlButton } from "@jireh-health/ui/components/MapView";
+import { SearchField } from "@jireh-health/ui/components/SearchField";
+
+<MapView
+  height={400}
+  markers={[
+    { id: "1", lat: -1.2921, lng: 36.8219, label: "Nairobi Hospital" },
+    { id: "2", lat: -1.2635, lng: 36.8073, label: "Aga Khan" },
+  ]}
+  renderMap={() => <YourMapComponent />}
+  searchBar={<SearchField placeholder="Search hospitals..." value="" onChange={() => {}} onClear={() => {}} />}
+  controls={
+    <>
+      <MapControlButton label="Zoom in">+</MapControlButton>
+      <MapControlButton label="Zoom out">-</MapControlButton>
+    </>
+  }
+/>`}>
         <Stack gap="3">
           <Text variant="body-sm" color="muted">
             MapView provides the chrome (search bar, controls, info card) — the consumer supplies the actual map via <code style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-xs)", background: "var(--bg-surface-muted)", padding: "2px 4px", borderRadius: "var(--radius-sm)" }}>renderMap</code>.

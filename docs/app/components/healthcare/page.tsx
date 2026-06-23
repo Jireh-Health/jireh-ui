@@ -25,7 +25,16 @@ export default function HealthcarePage() {
         count={7}
       />
 
-      <DemoSection id="circle-member-card" title="CircleMemberCard">
+      <DemoSection id="circle-member-card" title="CircleMemberCard" usage={`import { CircleMemberCard } from "@jireh-health/ui/components/CircleMemberCard";
+
+<CircleMemberCard
+  firstName="Sarah"
+  lastName="Wanjiku"
+  phoneNumber="+254 712 345 678"
+  variant="active"
+  layout="list"
+  relationship="Mother"
+/>`}>
         <Stack gap="6">
           <div>
             <Text variant="body-sm" color="muted" style={{ marginBottom: "var(--space-3)" }}>
@@ -56,7 +65,12 @@ export default function HealthcarePage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="cashback-banner" title="CashbackBanner">
+      <DemoSection id="cashback-banner" title="CashbackBanner" usage={`import { CashbackBanner } from "@jireh-health/ui/components/CashbackBanner";
+
+<CashbackBanner
+  title="Pay via Jireh and earn cashback!"
+  description="Get 3% cashback on all pharmacy payments this month."
+/>`}>
         <Stack gap="3">
           <CashbackBanner
             title="Pay via Jireh and earn cashback!"
@@ -69,7 +83,12 @@ export default function HealthcarePage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="onboarding-timeline" title="OnboardingTimeline">
+      <DemoSection id="onboarding-timeline" title="OnboardingTimeline" usage={`import { OnboardingTimeline } from "@jireh-health/ui/components/OnboardingTimeline";
+
+<OnboardingTimeline
+  steps={["Create account", "Verify phone", "Set up Care Saver", "Join a Circle"]}
+  currentStep={2}
+/>`}>
         <OnboardingTimeline
           steps={[
             "Create your Jireh account",
@@ -82,7 +101,9 @@ export default function HealthcarePage() {
         />
       </DemoSection>
 
-      <DemoSection id="stepper" title="Stepper">
+      <DemoSection id="stepper" title="Stepper" usage={`import { Stepper } from "@jireh-health/ui/components/Stepper";
+
+<Stepper currentStep={2} totalSteps={5} />`}>
         <Stack gap="6">
           <div>
             <Text variant="body-sm" color="muted" style={{ marginBottom: "var(--space-2)" }}>
@@ -99,7 +120,14 @@ export default function HealthcarePage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="patient-dashboard-section" title="PatientDashboardSection">
+      <DemoSection id="patient-dashboard-section" title="PatientDashboardSection" usage={`import { PatientDashboardSection } from "@jireh-health/ui/components/PatientDashboardSection";
+
+<PatientDashboardSection
+  title="Upcoming Appointments"
+  link={{ href: "/appointments", text: "View all" }}
+>
+  {/* appointment cards */}
+</PatientDashboardSection>`}>
         <PatientDashboardSection title="Upcoming Appointments" link={{ href: "#", text: "View all" }}>
           <Stack gap="2">
             <Box padding="3" bg="surface-muted" radius="sm">
@@ -118,7 +146,13 @@ export default function HealthcarePage() {
         </PatientDashboardSection>
       </DemoSection>
 
-      <DemoSection id="error-block" title="ErrorBlock">
+      <DemoSection id="error-block" title="ErrorBlock" usage={`import { ErrorBlock } from "@jireh-health/ui/components/ErrorBlock";
+
+<ErrorBlock
+  title="Payment failed"
+  message="Could not process payment. Please try again."
+  onRetry={() => handleRetry()}
+/>`}>
         <ErrorBlock
           title="Payment failed"
           message="We could not process your payment of KES 3,200 to Nairobi Hospital. Please check your M-PESA balance and try again."
@@ -126,7 +160,13 @@ export default function HealthcarePage() {
         />
       </DemoSection>
 
-      <DemoSection id="success-block" title="SuccessBlock">
+      <DemoSection id="success-block" title="SuccessBlock" usage={`import { SuccessBlock } from "@jireh-health/ui/components/SuccessBlock";
+
+<SuccessBlock
+  title="Payment successful"
+  message="KES 3,200 paid to Nairobi Hospital."
+  action={<Button size="sm">View receipt</Button>}
+/>`}>
         <SuccessBlock
           title="Payment successful"
           message="KES 3,200 has been paid to Nairobi Hospital. A receipt has been sent to your phone via SMS."

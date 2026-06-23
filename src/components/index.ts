@@ -29,12 +29,14 @@ export { InputOtp, type InputOtpProps } from "./InputOtp";
 export { Label, type LabelProps } from "./Label";
 export { SearchableSelect, type SearchableSelectProps, type SearchableSelectOption } from "./SearchableSelect";
 export { Calendar, type CalendarProps } from "./Calendar";
+export { PhoneInput, COUNTRIES, type PhoneInputProps, type Country } from "./PhoneInput";
 
 // Navigation
 export { Tabs, type TabsProps, type TabItem } from "./Tabs";
 export { Breadcrumb, type BreadcrumbProps, type BreadcrumbItem } from "./Breadcrumb";
 export { Pagination, type PaginationProps } from "./Pagination";
 export { Navbar, NavbarItem, type NavbarProps, type NavbarItemProps } from "./Navbar";
+export { BottomNav, BottomNavItem, type BottomNavProps, type BottomNavItemProps } from "./BottomNav";
 
 // Feedback and Status
 export { Alert, type AlertProps, type AlertVariant } from "./Alert";
@@ -46,7 +48,7 @@ export { EmptyState, type EmptyStateProps } from "./EmptyState";
 export { ProgressBar, type ProgressBarProps } from "./ProgressBar";
 
 // Data Display
-export { Card, CardHeader, CardContent, CardFooter, type CardProps, type CardHeaderProps, type CardContentProps, type CardFooterProps } from "./Card";
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, type CardProps, type CardHeaderProps, type CardTitleProps, type CardDescriptionProps, type CardContentProps, type CardFooterProps } from "./Card";
 export { Tag, type TagProps } from "./Tag";
 export { Avatar, type AvatarProps, type AvatarSize } from "./Avatar";
 export { DataTable, type DataTableProps, type DataTableColumn } from "./DataTable";

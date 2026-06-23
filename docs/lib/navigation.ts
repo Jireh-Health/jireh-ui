@@ -62,6 +62,7 @@ export const navigation: NavItem[] = [
           { label: "Label", href: "/components/input#label" },
           { label: "Calendar", href: "/components/input#calendar" },
           { label: "SearchableSelect", href: "/components/input#searchable-select" },
+          { label: "PhoneInput", href: "/components/input#phone-input" },
         ],
       },
       {
@@ -72,6 +73,7 @@ export const navigation: NavItem[] = [
           { label: "Breadcrumb", href: "/components/navigation#breadcrumb" },
           { label: "Pagination", href: "/components/navigation#pagination" },
           { label: "Navbar", href: "/components/navigation#navbar" },
+          { label: "BottomNav", href: "/components/navigation#bottom-nav" },
         ],
       },
       {
@@ -93,7 +95,7 @@ export const navigation: NavItem[] = [
         label: "Data Display",
         href: "/components/data-display",
         children: [
-          { label: "Card", href: "/components/data-display#card" },
+          { label: "Card / CardTitle / CardDescription", href: "/components/data-display#card" },
           { label: "Badge", href: "/components/data-display#badge" },
           { label: "Tag", href: "/components/data-display#tag" },
           { label: "Avatar", href: "/components/data-display#avatar" },

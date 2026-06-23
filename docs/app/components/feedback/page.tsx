@@ -40,7 +40,11 @@ export default function FeedbackPage() {
         count={9}
       />
 
-      <DemoSection id="alert" title="Alert">
+      <DemoSection id="alert" title="Alert" usage={`import { Alert } from "@jireh-health/ui/components/Alert";
+
+<Alert variant="success" title="Payment successful" dismissible>
+  Payment of KES 3,200 to Nairobi Hospital was successful.
+</Alert>`}>
         <Stack gap="3">
           <Alert variant="info" title="Upcoming auto-debit">
             Your next M-PESA auto-debit is scheduled for 1 Jul 2026.
@@ -57,7 +61,13 @@ export default function FeedbackPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="toast" title="Toast">
+      <DemoSection id="toast" title="Toast" usage={`import { Toast } from "@jireh-health/ui/components/Toast";
+
+<Toast
+  message="Receipt saved to your account"
+  variant="success"
+  duration={3000}
+/>`}>
         <Text variant="body-sm" color="muted" style={{ marginBottom: "var(--space-3)" }}>
           Toast messages are shown with duration: 0 (persistent) for this demo.
           In production they auto-dismiss.
@@ -69,7 +79,22 @@ export default function FeedbackPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="dialog" title="Dialog">
+      <DemoSection id="dialog" title="Dialog" usage={`import { Dialog } from "@jireh-health/ui/components/Dialog";
+
+const [open, setOpen] = useState(false);
+
+<Dialog
+  open={open}
+  onClose={() => setOpen(false)}
+  title="Confirm payment"
+  description="You are about to pay KES 12,400."
+  actions={
+    <>
+      <Button variant="ghost" onClick={() => setOpen(false)}>Cancel</Button>
+      <Button variant="primary" onClick={() => setOpen(false)}>Confirm</Button>
+    </>
+  }
+/>`}>
         <Button variant="primary" onClick={() => setDialogOpen(true)}>
           Open Dialog
         </Button>
@@ -98,7 +123,14 @@ export default function FeedbackPage() {
         </Dialog>
       </DemoSection>
 
-      <DemoSection id="drawer" title="Drawer">
+      <DemoSection id="drawer" title="Drawer" usage={`import { Drawer } from "@jireh-health/ui/components/Drawer";
+
+const [open, setOpen] = useState(false);
+
+<Button onClick={() => setOpen(true)}>Open Drawer</Button>
+<Drawer open={open} onClose={() => setOpen(false)} title="Transaction Details">
+  <p>Drawer content goes here.</p>
+</Drawer>`}>
         <Button variant="secondary" onClick={() => setDrawerOpen(true)}>
           Open Drawer
         </Button>
@@ -120,7 +152,9 @@ export default function FeedbackPage() {
         </Drawer>
       </DemoSection>
 
-      <DemoSection id="loader" title="Loader">
+      <DemoSection id="loader" title="Loader" usage={`import { Loader } from "@jireh-health/ui/components/Loader";
+
+<Loader size="md" label="Processing payment..." />`}>
         <Inline gap="6">
           <Loader size="sm" label="Loading..." />
           <Loader size="md" label="Processing payment..." />
@@ -128,7 +162,12 @@ export default function FeedbackPage() {
         </Inline>
       </DemoSection>
 
-      <DemoSection id="progress-bar" title="ProgressBar">
+      <DemoSection id="progress-bar" title="ProgressBar" usage={`import { ProgressBar } from "@jireh-health/ui/components/ProgressBar";
+
+<ProgressBar
+  value={68}
+  label="Care Saver target: KES 34,000 / KES 50,000"
+/>`}>
         <Stack gap="4">
           <ProgressBar value={68} label="Care Saver target: KES 34,000 / KES 50,000" />
           <ProgressBar value={100} label="Monthly savings goal complete" variant="success" />
@@ -137,7 +176,11 @@ export default function FeedbackPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="skeleton" title="Skeleton">
+      <DemoSection id="skeleton" title="Skeleton" usage={`import { Skeleton } from "@jireh-health/ui/components/Skeleton";
+
+<Skeleton variant="text" lines={3} />
+<Skeleton variant="circular" />
+<Skeleton variant="rectangular" height={80} />`}>
         <Stack gap="4">
           <div>
             <Text variant="body-sm" color="muted" style={{ marginBottom: "var(--space-2)" }}>
@@ -158,7 +201,13 @@ export default function FeedbackPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="empty-state" title="EmptyState">
+      <DemoSection id="empty-state" title="EmptyState" usage={`import { EmptyState } from "@jireh-health/ui/components/EmptyState";
+
+<EmptyState
+  title="No transactions yet"
+  description="Once you make your first payment, your history will appear here."
+  action={<Button variant="primary" size="sm">Make a payment</Button>}
+/>`}>
         <EmptyState
           title="No transactions yet"
           description="Once you make your first payment through Jireh, your transaction history will appear here."
@@ -166,7 +215,35 @@ export default function FeedbackPage() {
         />
       </DemoSection>
 
-      <DemoSection id="alert-dialog" title="AlertDialog">
+      <DemoSection id="alert-dialog" title="AlertDialog" usage={`import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@jireh-health/ui/components/AlertDialog";
+
+<AlertDialog>
+  <AlertDialogTrigger>
+    <Button variant="destructive">Leave Circle</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Leave circle?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This action cannot be undone.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel />
+      <AlertDialogAction>Leave Circle</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`}>
         <Stack gap="3">
           <Text variant="body-sm" color="muted">
             Unlike Dialog, AlertDialog cannot be dismissed by clicking the backdrop — the user must explicitly confirm or cancel.

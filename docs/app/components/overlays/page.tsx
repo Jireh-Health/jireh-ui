@@ -26,7 +26,11 @@ export default function OverlaysPage() {
         count={5}
       />
 
-      <DemoSection id="tooltip" title="Tooltip">
+      <DemoSection id="tooltip" title="Tooltip" usage={`import { Tooltip } from "@jireh-health/ui/components/Tooltip";
+
+<Tooltip content="View balance" placement="top">
+  <Button>Hover me</Button>
+</Tooltip>`}>
         <Inline gap="4">
           <Tooltip content="View your Care Saver balance" placement="top">
             <Button variant="secondary" size="sm">Hover me (top)</Button>
@@ -40,7 +44,16 @@ export default function OverlaysPage() {
         </Inline>
       </DemoSection>
 
-      <DemoSection id="dropdown-menu" title="DropdownMenu">
+      <DemoSection id="dropdown-menu" title="DropdownMenu" usage={`import { DropdownMenu } from "@jireh-health/ui/components/DropdownMenu";
+
+<DropdownMenu
+  trigger={<Button>Actions</Button>}
+  items={[
+    { label: "View details", onClick: () => {} },
+    { label: "Edit", onClick: () => {} },
+    { label: "Delete", onClick: () => {}, destructive: true },
+  ]}
+/>`}>
         <DropdownMenu
           trigger={<Button variant="secondary" size="sm">Actions</Button>}
           items={[
@@ -52,7 +65,16 @@ export default function OverlaysPage() {
         />
       </DemoSection>
 
-      <DemoSection id="popover" title="Popover">
+      <DemoSection id="popover" title="Popover" usage={`import { Popover, PopoverTrigger, PopoverContent } from "@jireh-health/ui/components/Popover";
+
+<Popover>
+  <PopoverTrigger>
+    <Button>Open popover</Button>
+  </PopoverTrigger>
+  <PopoverContent side="bottom" align="start">
+    <Text>Popover content here</Text>
+  </PopoverContent>
+</Popover>`}>
         <Inline gap="4">
           <Popover>
             <PopoverTrigger>
@@ -80,7 +102,14 @@ export default function OverlaysPage() {
         </Inline>
       </DemoSection>
 
-      <DemoSection id="sheet" title="Sheet">
+      <DemoSection id="sheet" title="Sheet" usage={`import { Sheet } from "@jireh-health/ui/components/Sheet";
+
+const [open, setOpen] = useState(false);
+
+<Button onClick={() => setOpen(true)}>Open Sheet</Button>
+<Sheet open={open} onClose={() => setOpen(false)} side="right" width={380}>
+  <Text>Sheet content here</Text>
+</Sheet>`}>
         <Inline gap="3">
           <Button variant="secondary" size="sm" onClick={() => setSheetOpen(true)}>
             Open Sheet (right)
@@ -114,7 +143,14 @@ export default function OverlaysPage() {
         </Sheet>
       </DemoSection>
 
-      <DemoSection id="bottom-sheet" title="BottomSheet">
+      <DemoSection id="bottom-sheet" title="BottomSheet" usage={`import { BottomSheet } from "@jireh-health/ui/components/BottomSheet";
+
+const [open, setOpen] = useState(false);
+
+<Button onClick={() => setOpen(true)}>Open</Button>
+<BottomSheet open={open} onClose={() => setOpen(false)} snapPoints={[0.4, 0.85]}>
+  <Text>Bottom sheet content here</Text>
+</BottomSheet>`}>
         <Stack gap="3">
           <Text variant="body-sm" color="muted">
             A mobile-optimised sheet with drag handle and snap points. Drag down to dismiss.

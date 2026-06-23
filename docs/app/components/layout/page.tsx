@@ -19,7 +19,11 @@ export default function LayoutPage() {
         count={7}
       />
 
-      <DemoSection id="box" title="Box">
+      <DemoSection id="box" title="Box" usage={`import { Box } from "@jireh-health/ui/components/Box";
+
+<Box padding="4" bg="surface-muted" radius="md">
+  Content goes here
+</Box>`}>
         <Stack gap="4">
           <Box padding="4" bg="surface-muted" radius="md">
             <Text>Default Box with padding and background</Text>
@@ -33,7 +37,13 @@ export default function LayoutPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="stack" title="Stack">
+      <DemoSection id="stack" title="Stack" usage={`import { Stack } from "@jireh-health/ui/components/Stack";
+
+<Stack gap="4">
+  <div>First item</div>
+  <div>Second item</div>
+  <div>Third item</div>
+</Stack>`}>
         <Stack gap="3">
           <Box padding="3" bg="surface-muted" radius="sm">
             <Text variant="body-sm">Stack item 1 -- Patient intake form</Text>
@@ -47,7 +57,13 @@ export default function LayoutPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="inline" title="Inline">
+      <DemoSection id="inline" title="Inline" usage={`import { Inline } from "@jireh-health/ui/components/Inline";
+
+<Inline gap="3">
+  <span>Tag 1</span>
+  <span>Tag 2</span>
+  <span>Tag 3</span>
+</Inline>`}>
         <Inline gap="3">
           <Box padding="3" bg="surface-muted" radius="sm">
             <Text variant="body-sm">Consultation</Text>
@@ -64,7 +80,11 @@ export default function LayoutPage() {
         </Inline>
       </DemoSection>
 
-      <DemoSection id="container" title="Container">
+      <DemoSection id="container" title="Container" usage={`import { Container } from "@jireh-health/ui/components/Container";
+
+<Container size="content">
+  <p>Centered, max-width content area</p>
+</Container>`}>
         <Stack gap="4">
           <Container size="narrow">
             <Box padding="3" bg="surface-muted" radius="sm">
@@ -90,7 +110,13 @@ export default function LayoutPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="grid" title="Grid">
+      <DemoSection id="grid" title="Grid" usage={`import { Grid } from "@jireh-health/ui/components/Grid";
+
+<Grid columns={3} gap="3">
+  <div>Cell 1</div>
+  <div>Cell 2</div>
+  <div>Cell 3</div>
+</Grid>`}>
         <Stack gap="6">
           <div>
             <Text variant="body-sm" color="muted" style={{ marginBottom: "var(--space-2)" }}>
@@ -130,7 +156,11 @@ export default function LayoutPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="divider" title="Divider">
+      <DemoSection id="divider" title="Divider" usage={`import { Divider } from "@jireh-health/ui/components/Divider";
+
+<Divider />
+<Divider variant="subtle" />
+<Divider orientation="vertical" />`}>
         <Stack gap="4">
           <div>
             <Text variant="body-sm" color="muted" style={{ marginBottom: "var(--space-2)" }}>
@@ -158,7 +188,11 @@ export default function LayoutPage() {
           </div>
         </Stack>
       </DemoSection>
-      <DemoSection id="scroll-area" title="ScrollArea">
+      <DemoSection id="scroll-area" title="ScrollArea" usage={`import { ScrollArea } from "@jireh-health/ui/components/ScrollArea";
+
+<ScrollArea style={{ height: 200 }}>
+  <div>Scrollable content here...</div>
+</ScrollArea>`}>
         <ScrollArea style={{ height: 200, border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)" }}>
           <Stack gap="3" style={{ padding: "var(--space-3)" }}>
             {[

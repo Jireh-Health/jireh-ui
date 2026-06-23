@@ -16,7 +16,11 @@ export default function TypographyPage() {
         count={3}
       />
 
-      <DemoSection id="heading" title="Heading">
+      <DemoSection id="heading" title="Heading" usage={`import { Heading } from "@jireh-health/ui/components/Heading";
+
+<Heading level={1}>Page Title</Heading>
+<Heading level={2}>Section Title</Heading>
+<Heading level={3}>Subsection Title</Heading>`}>
         <Stack gap="3">
           <Heading level={1}>Patient Dashboard</Heading>
           <Heading level={2}>Care Saver Balance</Heading>
@@ -25,7 +29,11 @@ export default function TypographyPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="text" title="Text">
+      <DemoSection id="text" title="Text" usage={`import { Text } from "@jireh-health/ui/components/Text";
+
+<Text variant="body">Standard body text content.</Text>
+<Text variant="body-sm" color="muted">Secondary caption text.</Text>
+<Text variant="mono">TXN-JH-2026-0001</Text>`}>
         <Stack gap="3">
           <Text variant="body-lg">
             Your Jireh Care Saver helps you prepare for healthcare expenses
@@ -49,7 +57,10 @@ export default function TypographyPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="display-text" title="DisplayText">
+      <DemoSection id="display-text" title="DisplayText" usage={`import { DisplayText } from "@jireh-health/ui/components/DisplayText";
+
+<DisplayText size="xl">KES 124,800</DisplayText>
+<DisplayText size="md">KES 8,750</DisplayText>`}>
         <Stack gap="4">
           <DisplayText size="xl">KES 124,800</DisplayText>
           <DisplayText size="lg">KES 45,200</DisplayText>

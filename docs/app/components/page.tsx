@@ -27,14 +27,14 @@ const categories = [
   {
     title: "Selection & Input",
     href: "/components/input",
-    description: "TextField, TextArea, SearchField, Select, Checkbox, RadioGroup, Switch, InputOtp, Label, Calendar, and SearchableSelect.",
-    count: 11,
+    description: "TextField, TextArea, SearchField, Select, Checkbox, RadioGroup, Switch, InputOtp, Label, Calendar, SearchableSelect, and PhoneInput.",
+    count: 12,
   },
   {
     title: "Navigation",
     href: "/components/navigation",
-    description: "Tabs, Breadcrumb, Pagination, and Navbar for moving between views.",
-    count: 4,
+    description: "Tabs, Breadcrumb, Pagination, Navbar, and BottomNav for moving between views.",
+    count: 5,
   },
   {
     title: "Feedback & Status",

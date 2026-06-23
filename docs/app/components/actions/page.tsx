@@ -17,7 +17,11 @@ export default function ActionsPage() {
         count={2}
       />
 
-      <DemoSection id="button" title="Button">
+      <DemoSection id="button" title="Button" usage={`import { Button } from "@jireh-health/ui/components/Button";
+
+<Button variant="primary" onClick={handleClick}>
+  Pay now
+</Button>`}>
         <Stack gap="4">
           <div>
             <Text variant="body-sm" color="muted" style={{ marginBottom: "var(--space-2)" }}>
@@ -55,7 +59,14 @@ export default function ActionsPage() {
         </Stack>
       </DemoSection>
 
-      <DemoSection id="icon-button" title="IconButton">
+      <DemoSection id="icon-button" title="IconButton" usage={`import { IconButton } from "@jireh-health/ui/components/IconButton";
+
+<IconButton
+  icon={<GearIcon />}
+  label="Settings"
+  variant="ghost"
+  size="md"
+/>`}>
         <Inline gap="3">
           <IconButton icon={<GearIcon />} label="Settings" variant="ghost" size="md" />
           <IconButton icon={<TrashIcon />} label="Delete transaction" variant="ghost" size="md" />

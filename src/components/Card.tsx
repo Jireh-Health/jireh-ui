@@ -99,6 +99,51 @@ export function CardHeader({ title, subtitle, action, style, ...rest }: CardHead
   );
 }
 
+export interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {
+  children?: ReactNode;
+}
+
+export function CardTitle({ children, style, ...rest }: CardTitleProps) {
+  return (
+    <h3
+      style={{
+        fontFamily: "var(--font-sans)",
+        fontSize: "var(--text-lg)",
+        fontWeight: 600,
+        color: "var(--fg-heading)",
+        margin: 0,
+        lineHeight: 1.3,
+        ...style,
+      }}
+      {...rest}
+    >
+      {children}
+    </h3>
+  );
+}
+
+export interface CardDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {
+  children?: ReactNode;
+}
+
+export function CardDescription({ children, style, ...rest }: CardDescriptionProps) {
+  return (
+    <p
+      style={{
+        fontFamily: "var(--font-sans)",
+        fontSize: "var(--text-sm)",
+        color: "var(--fg-muted)",
+        margin: "var(--space-1) 0 0",
+        lineHeight: "var(--leading-normal)",
+        ...style,
+      }}
+      {...rest}
+    >
+      {children}
+    </p>
+  );
+}
+
 export function CardContent({ children, style, ...rest }: CardContentProps) {
   return (
     <div style={{ padding: "var(--space-4)", ...style }} {...rest}>
