@@ -6,6 +6,7 @@ export { Container, type ContainerProps, type ContainerSize } from "./Container"
 export { Grid, type GridProps } from "./Grid";
 export { Divider, type DividerProps } from "./Divider";
 export { VisuallyHidden, type VisuallyHiddenProps } from "./VisuallyHidden";
+export { ScrollArea, type ScrollAreaProps } from "./ScrollArea";
 
 // Typography
 export { Heading, type HeadingProps, type HeadingLevel } from "./Heading";
@@ -25,11 +26,15 @@ export { Checkbox, type CheckboxProps } from "./Checkbox";
 export { RadioGroup, type RadioGroupProps, type RadioOption } from "./RadioGroup";
 export { Switch, type SwitchProps } from "./Switch";
 export { InputOtp, type InputOtpProps } from "./InputOtp";
+export { Label, type LabelProps } from "./Label";
+export { SearchableSelect, type SearchableSelectProps, type SearchableSelectOption } from "./SearchableSelect";
+export { Calendar, type CalendarProps } from "./Calendar";
 
 // Navigation
 export { Tabs, type TabsProps, type TabItem } from "./Tabs";
 export { Breadcrumb, type BreadcrumbProps, type BreadcrumbItem } from "./Breadcrumb";
 export { Pagination, type PaginationProps } from "./Pagination";
+export { Navbar, NavbarItem, type NavbarProps, type NavbarItemProps } from "./Navbar";
 
 // Feedback and Status
 export { Alert, type AlertProps, type AlertVariant } from "./Alert";
@@ -54,6 +59,11 @@ export { Dialog, type DialogProps } from "./Dialog";
 export { Drawer, type DrawerProps } from "./Drawer";
 export { Tooltip, type TooltipProps, type TooltipPlacement } from "./Tooltip";
 export { DropdownMenu, type DropdownMenuProps, type DropdownMenuItem } from "./DropdownMenu";
+export { Sheet, type SheetProps } from "./Sheet";
+export { BottomSheet, type BottomSheetProps } from "./BottomSheet";
+export { Popover, PopoverTrigger, PopoverContent, type PopoverProps, type PopoverContentProps, type PopoverTriggerProps } from "./Popover";
+export { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction, type AlertDialogProps, type AlertDialogContentProps } from "./AlertDialog";
+export { MapView, MapControlButton, type MapViewProps, type MapControlButtonProps, type MapMarker } from "./MapView";
 
 // Healthcare (Jireh-specific)
 export { CircleMemberCard, variantFromStatus, type CircleMemberCardProps, type CircleMemberVariant } from "./CircleMemberCard";
