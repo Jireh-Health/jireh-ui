@@ -8,6 +8,7 @@ export interface CalendarProps extends Omit<HTMLAttributes<HTMLDivElement>, "onC
   min?: Date;
   max?: Date;
   locale?: string;
+  yearRange?: [number, number];
 }
 
 const DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
@@ -39,19 +40,35 @@ const navBtnStyle: React.CSSProperties = {
   fontSize: "var(--text-base)",
 };
 
+const selectStyle: React.CSSProperties = {
+  fontFamily: "var(--font-sans)",
+  fontSize: "var(--text-sm)",
+  fontWeight: 600,
+  color: "var(--fg-heading)",
+  background: "transparent",
+  border: "none",
+  cursor: "pointer",
+  padding: "2px 0",
+  appearance: "auto" as React.CSSProperties["appearance"],
+};
+
 export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
   function Calendar(
-    { value, onChange, min, max, locale = "en-US", style, ...rest },
+    { value, onChange, min, max, locale = "en-US", yearRange, style, ...rest },
     ref,
   ) {
     const today = useMemo(() => new Date(), []);
     const [viewYear, setViewYear] = useState(value?.getFullYear() ?? today.getFullYear());
     const [viewMonth, setViewMonth] = useState(value?.getMonth() ?? today.getMonth());
 
-    const monthLabel = new Date(viewYear, viewMonth).toLocaleDateString(locale, {
-      month: "long",
-      year: "numeric",
-    });
+    const [minYear, maxYear] = yearRange ?? [today.getFullYear() - 100, today.getFullYear() + 10];
+
+    const months = useMemo(() => {
+      const formatter = new Intl.DateTimeFormat(locale, { month: "long" });
+      return Array.from({ length: 12 }, (_, i) =>
+        formatter.format(new Date(2024, i)),
+      );
+    }, [locale]);
 
     const daysInMonth = getDaysInMonth(viewYear, viewMonth);
     const startDay = getStartDayOfWeek(viewYear, viewMonth);
@@ -110,15 +127,29 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           <button type="button" onClick={prevMonth} aria-label="Previous month" style={navBtnStyle}>
             ‹
           </button>
-          <span
-            style={{
-              fontSize: "var(--text-sm)",
-              fontWeight: 600,
-              color: "var(--fg-heading)",
-            }}
-          >
-            {monthLabel}
-          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: "var(--space-1)" }}>
+            <select
+              value={viewMonth}
+              onChange={(e) => setViewMonth(Number(e.target.value))}
+              aria-label="Select month"
+              style={selectStyle}
+            >
+              {months.map((name, i) => (
+                <option key={i} value={i}>{name}</option>
+              ))}
+            </select>
+            <select
+              value={viewYear}
+              onChange={(e) => setViewYear(Number(e.target.value))}
+              aria-label="Select year"
+              style={selectStyle}
+            >
+              {Array.from({ length: maxYear - minYear + 1 }, (_, i) => {
+                const y = minYear + i;
+                return <option key={y} value={y}>{y}</option>;
+              })}
+            </select>
+          </div>
           <button type="button" onClick={nextMonth} aria-label="Next month" style={navBtnStyle}>
             ›
           </button>

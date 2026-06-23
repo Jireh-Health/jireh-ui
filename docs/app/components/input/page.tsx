@@ -226,7 +226,14 @@ const [otp, setOtp] = useState("");
 
 const [date, setDate] = useState<Date | null>(null);
 
-<Calendar value={date} onChange={setDate} />`}>
+<Calendar value={date} onChange={setDate} />
+
+// With custom year range (e.g. date of birth)
+<Calendar
+  value={date}
+  onChange={setDate}
+  yearRange={[1920, 2026]}
+/>`}>
         <Stack gap="3">
           <Text variant="body-sm" color="muted">
             {calendarDate
