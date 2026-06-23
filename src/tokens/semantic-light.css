@@ -1,0 +1,65 @@
+/* ==========================================================================
+   Jireh Health Design System — Semantic Tokens (Light Mode)
+   Intent-based tokens that map to primitives. These are the primary
+   interface for component authors.
+   ========================================================================== */
+
+:root,
+[data-theme="light"] {
+  /* ---- Backgrounds ---- */
+  --bg-page: var(--color-white);
+  --bg-surface: var(--color-white);
+  --bg-surface-raised: var(--color-gray-50);
+  --bg-surface-muted: var(--color-gray-100);
+  --bg-surface-brand: var(--color-jireh-purple);
+  --bg-surface-brand-light: var(--color-bubblegum-lightest);
+  --bg-overlay: rgba(0, 0, 0, 0.50);
+
+  /* ---- Text / Foreground ---- */
+  --fg-default: var(--color-gray-900);
+  --fg-heading: var(--color-gray-900);
+  --fg-muted: var(--color-gray-500);
+  --fg-subtle: var(--color-gray-400);
+  --fg-on-brand: var(--color-white);
+  --fg-link: var(--color-jireh-purple);
+  --fg-link-hover: var(--color-jireh-purple-dark);
+
+  /* ---- Borders ---- */
+  --border-default: var(--color-gray-200);
+  --border-strong: var(--color-gray-300);
+  --border-focus: var(--color-jireh-purple);
+
+  /* ---- Focus ring ---- */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--color-jireh-purple);
+
+  /* ---- Status ---- */
+  --color-success: var(--color-success-green);
+  --color-success-bg: var(--color-success-green-light);
+  --color-warning: var(--color-warning-orange);
+  --color-warning-bg: var(--color-warning-orange-light);
+  --color-error: var(--color-error-red);
+  --color-error-bg: var(--color-error-red-light);
+  --color-info: var(--color-info-blue);
+  --color-info-bg: var(--color-info-blue-light);
+
+  /* ---- Interactive ---- */
+  --interactive-default: var(--color-jireh-purple);
+  --interactive-hover: var(--color-jireh-purple-dark);
+  --interactive-active: var(--color-jireh-purple-darker);
+  --interactive-disabled: var(--color-gray-300);
+
+  /* ---- Accents ---- */
+  --accent-primary: var(--color-jireh-purple);
+  --accent-secondary: var(--color-bubblegum);
+  --accent-success: var(--color-jireh-green);
+  --accent-cashback: var(--color-jireh-green);
+
+  /* ---- Domain-specific ---- */
+  --circle-active: var(--color-jireh-purple);
+  --circle-new: var(--color-success-green);
+  --circle-pending: var(--color-warning-orange);
+  --circle-defaulted: var(--color-error-red);
+  --circle-inactive: var(--color-gray-400);
+}
