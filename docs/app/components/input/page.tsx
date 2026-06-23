@@ -52,7 +52,7 @@ export default function InputPage() {
       <DemoSection id="search-field" title="SearchField">
         <SearchField
           value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value)}
           onClear={() => setSearchValue("")}
           placeholder="Search hospitals, clinics, or pharmacies..."
           label="Find a care provider"
